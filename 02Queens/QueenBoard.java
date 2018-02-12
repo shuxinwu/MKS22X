@@ -94,8 +94,7 @@ public class QueenBoard{
     }
     return q > 0;
   }
+  
+  //  public int countSolutions(){}
 
-  /*
-    public int countSolutions(){}
-  */
 }
