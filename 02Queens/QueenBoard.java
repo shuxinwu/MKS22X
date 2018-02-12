@@ -1,75 +1,75 @@
 public class QueenBoard{
-  private int[][] board;
-  private int s;
-  private int q;
+    private int[][] board;
+    private int s;
+    private int q;
 
-  public QueenBoard(int size){
-    board = new int[size][size];
-    s = size;
-    for (int a = 0; a < s; a++){
+    public QueenBoard(int size){
+	board = new int[size][size];
+	s = size;
+	for (int a = 0; a < s; a++){
 	    for (int b = 0; b < s; b++){
-        board[a][b] = 0;
+		board[a][b] = 0;
 	    }
+	}
     }
-  }
 
-  private boolean addQueen(int r, int c){
-    int o = board[r][c];
-    if (!edit(r, c, 1, 1, 1) ||
-        !edit(r, c, 1, -1, 1) ||
-        !edit(r, c, -1, 1, 1) ||
-        !edit(r, c, -1, -1, 1) ){
-      removeQueen(r, c, o);
-      return false;
+    private boolean addQueen(int r, int c){
+	int o = board[r][c];
+	if (!edit(r, c, 1, 1, 1) ||
+	    !edit(r, c, 1, -1, 1) ||
+	    !edit(r, c, -1, 1, 1) ||
+	    !edit(r, c, -1, -1, 1) ){
+	    removeQueen(r, c, o);
+	    return false;
+	}
+	board[r][c] = -1;
+	q++;
+	return true;
     }
-    board[r][c] = -1;
-    q++;
-    return true;
-  }
   
-  private void removeQueen(int r, int c, int o){
-    edit(r, c, 1, 1, -1);
-    edit(r, c, 1, -1, -1);
-    edit(r, c, -1, -1, -1);
-    edit(r, c, -1, 1, -1);
-    board[r][c] = o;
-  }
+    private void removeQueen(int r, int c, int o){
+	edit(r, c, 1, 1, -1);
+	edit(r, c, 1, -1, -1);
+	edit(r, c, -1, -1, -1);
+	edit(r, c, -1, 1, -1);
+	board[r][c] = o;
+    }
 
-  // same row, same col, awful diagon alleys
-  public boolean edit(int r, int c, int x, int y, int z){
-    int a = r + x;
-    int b = c + y;
-    for (int i = 0; i < s; i++){
-      if (board[r][i] == -1 || board[i][c] == -1){
-        return false;
-      }
-      else{
-        board[r][i] += 1;
-        board[i][c] += 1;
-      }
+    // same row, same col, awful diagon alleys
+    public boolean edit(int r, int c, int x, int y, int z){
+	int a = r + x;
+	int b = c + y;
+	for (int i = 0; i < s; i++){
+	    if (board[r][i] == -1 || board[i][c] == -1){
+		return false;
+	    }
+	    else{
+		board[r][i] += 1;
+		board[i][c] += 1;
+	    }
+	}
+	while (a < s && a > -1 && b < s && b > -1){
+	    if (board[a][b] == -1){
+		return false;
+	    }
+	    else{
+		board[a][b] += z;
+	    }
+	    a += x;
+	    b += y;
+	}
+	return true;
     }
-    while (a < s && a > -1 && b < s && b > -1){
-      if (board[a][b] == -1){
-        return false;
-      }
-      else{
-        board[a][b] += z;
-      }
-      a += x;
-      b += y;
-    }
-    return true;
-  }
   
-  public String toString(){
-    String ans = "";
-    for (int a = 0; a < s; a++){
+    public String toString(){
+	String ans = "";
+	for (int a = 0; a < s; a++){
 	    for (int b = 0; b < s; b++){
-        //    System.out.println(board[a][b]);
-        if (!solve()){
-          ans += "0";
-        }
-        else{
+		//    System.out.println(board[a][b]);
+		if (!solve()){
+		    ans += "0";
+		}
+		else{
           if (board[a][b] == -1){
             ans = ans + "Q";
           }
@@ -80,21 +80,50 @@ public class QueenBoard{
         ans += " ";
 	    }
 	    ans += "\n";
+	}
+	return ans;
     }
-    return ans;
-  }
 
-  public boolean solve(){
-    for (int r = 0; r < s; r++){
-      for (int c = 0; c < s; c++){
-        if (board[r][c] == 0){
-          addQueen(r, c);
-        }
-      }
+    public boolean solve(){
+	for (int r = 0; r < s; r++){
+	    for (int c = 0; c < s; c++){
+		if (board[r][c] != 0){
+		    throw new IllegalStateException();
+		}
+	    }
+	}
+	return solveR(0);
     }
-    return q > 0;
-  }
+
+    public boolean solveR(int col){
+	if (col >= s){
+	    return true;
+	}
+	for (int i = 0; i < s; i++){
+	    if (addQueen(i, col) && solveR(col + 1)){
+		return true;
+	    }
+	    /*
+	    else{
+		removeQueen(i, col, o);
+	    }
+	    */
+	}
+	return false;
+	    /*
+	      for (int r = 0; r < s; r++){
+	      for (int c = 0; c < s; c++){
+	      if (board[r][c] == 0){
+	      addQueen(r, c);
+	      }
+	      }
+	      }
+	      return q > 0;
+	    */
+    }
   
-  //  public int countSolutions(){}
+	//  public int countSolutions(){}
+
+  
 
 }
