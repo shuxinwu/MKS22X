@@ -1,6 +1,7 @@
 public class QueenBoard{
   private int[][] board;
   private int s;
+  private int q;
 
   public QueenBoard(int size){
     board = new int[size][size];
@@ -22,6 +23,7 @@ public class QueenBoard{
       return false;
     }
     board[r][c] = -1;
+    q++;
     return true;
   }
   
@@ -90,7 +92,7 @@ public class QueenBoard{
         }
       }
     }
-    return true;
+    return q > 0;
   }
 
   /*
