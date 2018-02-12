@@ -12,9 +12,7 @@ public class QueenBoard{
     }
   }
 
-  // later change back to private
-  // only if board[r][c] == 0
-  public boolean addQueen(int r, int c){
+  private boolean addQueen(int r, int c){
     int o = board[r][c];
     if (!edit(r, c, 1, 1, 1) ||
         !edit(r, c, 1, -1, 1) ||
@@ -23,8 +21,6 @@ public class QueenBoard{
       removeQueen(r, c, o);
       return false;
     }
-    
-
     board[r][c] = -1;
     return true;
   }
@@ -37,22 +33,16 @@ public class QueenBoard{
     board[r][c] = o;
   }
 
-  // same row, same col
-  // awful diagon alleys
+  // same row, same col, awful diagon alleys
   public boolean edit(int r, int c, int x, int y, int z){
-    int a = r += x;
-    int b = c += y;
+    int a = r + x;
+    int b = c + y;
     for (int i = 0; i < s; i++){
-      if (board[r][i] == -1){
+      if (board[r][i] == -1 || board[i][c] == -1){
         return false;
       }
       else{
         board[r][i] += 1;
-      }
-      if (board[i][c] == -1){
-        return false;
-      }
-      else{
         board[i][c] += 1;
       }
     }
@@ -73,12 +63,17 @@ public class QueenBoard{
     String ans = "";
     for (int a = 0; a < s; a++){
 	    for (int b = 0; b < s; b++){
-        System.out.println(board[a][b]);
-        if (board[a][b] == -1){
-          ans = ans + "Q";
+        //    System.out.println(board[a][b]);
+        if (!solve()){
+          ans += "0";
         }
         else{
-          ans += "_";
+          if (board[a][b] == -1){
+            ans = ans + "Q";
+          }
+          else{
+            ans += "_";
+          }
         }
         ans += " ";
 	    }
@@ -87,9 +82,15 @@ public class QueenBoard{
     return ans;
   }
 
-  /*
   public boolean solve(){
-    
+    for (int r = 0; r < s; r++){
+      for (int c = 0; c < s; c++){
+        if (board[r][c] == 0){
+          addQueen(r, c);
+        }
+      }
+    }
+    return true;
   }
 
   /*
