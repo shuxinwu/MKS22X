@@ -6,6 +6,8 @@ public class Maze{
     private boolean animate;//false by default
     private int x;
     private int y;
+    int[][] moves = {
+    };
 
     /*Constructor loads a maze text file, and sets animate to false by default.
 
@@ -20,7 +22,7 @@ public class Maze{
       3. When the file is not found OR the file is invalid (not exactly 1 E and 1 S) then: 
          throw a FileNotFoundException or IllegalStateException
     */
-    public Maze(String filename){
+    public Maze(String filename) throws FileNotFoundException{
         //COMPLETE CONSTRUCTOR
         int c = 0;
 	int d = 0;
@@ -101,11 +103,21 @@ public class Maze{
 
         //COMPLETE SOLVE
 	//change the char
-	maze[a][b] = ;
-	
+	maze[a][b] = '@';
+	count++;
+
+	maze[a][b] = '.';
+	count--;
+	int next = -1;
+	for (int i = 0; i < 4; i++){
+	    if (maze[a + moves[i][0]][b + moves[i][1]] == '_'){
+		next = 
+	    }
+	}
 	//move
 
 	return count;
+	// return -1;
     }
 
 }
