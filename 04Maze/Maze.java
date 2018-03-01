@@ -1,5 +1,6 @@
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Maze{
     private char[][] maze;
@@ -7,6 +8,7 @@ public class Maze{
     private int x;
     private int y;
     int[][] moves = {
+	{0,1}, {1,0}, {-1,0}, {0,-1}
     };
 
     /*Constructor loads a maze text file, and sets animate to false by default.
