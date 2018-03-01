@@ -23,11 +23,18 @@ public class Maze{
          throw a FileNotFoundException or IllegalStateException
     */
     public Maze(String filename) throws FileNotFoundException{
-        //COMPLETE CONSTRUCTOR
+      File text = new File(filename);
+      Scanner inf = new Scanner(text);
+      for (int i = 0; inf.hasNextLine(); i++){
+        String line = inf.nextLine();
+        maze[i] = line.toCharArray();
+      }
+
+      //COMPLETE CONSTRUCTOR
         int c = 0;
 	int d = 0;
 	for (int a = 0; a < maze.length; a++){
-	    for (int b = 0; maze[0].length; a++){
+	    for (int b = 0; b < maze[0].length; a++){
 		if (maze[a][b] == 'S'){
 		    c++;
 		    x = a;
@@ -43,7 +50,18 @@ public class Maze{
 	}
 	setAnimate(animate);
     }
-    
+
+  public String getMaze(){
+    String m = "";
+    for(int a = 0; a < maze.length; a++){
+        for (int b = 0; b < maze[0].length; b++){
+          m += maze[a][b];
+        }
+        m += "\n";
+      }
+    return m;
+  }
+  /*
     private void wait(int millis){
          try {
              Thread.sleep(millis);
@@ -51,6 +69,7 @@ public class Maze{
          catch (InterruptedException e) {
          }
      }
+  */
 
     public void setAnimate(boolean b){
         animate = b;
@@ -66,6 +85,7 @@ public class Maze{
       Note the helper function has the same name, but different parameters.
       Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
     */
+  /*
     public int solve(){
 	//find the location of the S. 
 	//erase the S
@@ -90,6 +110,7 @@ public class Maze{
             Note: This is not required based on the algorithm, it is just nice visually to see.
         All visited spots that are part of the solution are changed to '@'
     */
+  /*
     private int solve(int row, int col){ //you can add more parameters since this is private
 	int a = row;
 	int b = col;
@@ -119,5 +140,5 @@ public class Maze{
 	return count;
 	// return -1;
     }
-
+*/
 }
