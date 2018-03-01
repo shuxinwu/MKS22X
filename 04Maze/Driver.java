@@ -1,17 +1,21 @@
-import java.util.*;
-import java.io.*;
+//import java.util.*;
+//import java.io.*;
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 public class Driver{
 
-    public static void main(String[]args){
+    public static void main(String[] args){
 	try{
-	Maze f;
-        f = new Maze("data1.dat");//true animates the maze.
-	//   f.setAnimate(true);
-	//     f.solve();
+	    Maze f = new Maze("Maze.txt");
+	    //true animates the maze.
+	    //   f.setAnimate(true);
+	    //   f.solve();
 
-	System.out.println(f);
-	System.out.println(f.getMaze());
+	    System.out.println(f);
+	    System.out.println(f.getMaze());
 	}
 	catch(FileNotFoundException e){
 	}
