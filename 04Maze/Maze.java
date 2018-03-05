@@ -4,26 +4,14 @@ import java.util.Scanner;
 
 public class Maze{
     private char[][] maze;
-    private boolean animate;//false by default
+    private boolean animate;
     private int x;
     private int y;
     int[][] moves = {
 	{0,1}, {1,0}, {-1,0}, {0,-1}
     };
 
-    /*Constructor loads a maze text file, and sets animate to false by default.
-
-      1. The file contains a rectangular ascii maze, made with the following 4 characters:
-      '#' - Walls - locations that cannot be moved onto
-      ' ' - Empty Space - locations that can be moved onto
-      'E' - the location of the goal (exactly 1 per file)
-      'S' - the location of the start(exactly 1 per file)
-
-      2. The maze has a border of '#' around the edges. So you don't have to check for out of bounds!
-
-      3. When the file is not found OR the file is invalid (not exactly 1 E and 1 S) then: 
-         throw a FileNotFoundException or IllegalStateException
-    */
+  //constructor
     public Maze(String filename) throws FileNotFoundException{
       File text = new File(filename);
       Scanner inf = new Scanner(text);
@@ -41,8 +29,7 @@ public class Maze{
         String line = in.nextLine();
         maze[i] = line.toCharArray();
       }
-
-      //COMPLETE CONSTRUCTOR
+      
         int c = 0;
 	int d = 0;
 	for (int a = 0; a < row; a++){
@@ -73,7 +60,7 @@ public class Maze{
       }
     return m;
   }
-  /*
+  
     private void wait(int millis){
          try {
              Thread.sleep(millis);
@@ -81,7 +68,7 @@ public class Maze{
          catch (InterruptedException e) {
          }
      }
-  */
+ 
 
     public void setAnimate(boolean b){
         animate = b;
@@ -92,20 +79,10 @@ public class Maze{
         System.out.println("\033[2J\033[1;1H");
     }
 
-
-    /*Wrapper Solve Function returns the helper function
-      Note the helper function has the same name, but different parameters.
-      Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
-    */
-  /*
-    public int solve(){
-	//find the location of the S. 
-	//erase the S
-	//and start solving at the location of the s.
-	//return solve(???,???);
-	
+  //wrapper solve
+     public int solve(){	
 	maze[x][y] = ' ';
-	return solve(x, y);
+	return solve(x, y, 0, 0);
     }
 
     /*
@@ -122,35 +99,42 @@ public class Maze{
             Note: This is not required based on the algorithm, it is just nice visually to see.
         All visited spots that are part of the solution are changed to '@'
     */
-  /*
-    private int solve(int row, int col){ //you can add more parameters since this is private
-	int a = row;
-	int b = col;
-	int count = 0;
+  
+  private int solve(int row, int col, int count, int current){ //you can add more parameters since this is private
         //automatic animation! You are welcome.
-        if(animate){
-            clearTerminal();
-            System.out.println(this);
-            wait(20);
-        }
-
-        //COMPLETE SOLVE
-	//change the char
-	maze[a][b] = '@';
-	count++;
-
-	maze[a][b] = '.';
-	count--;
-	int next = -1;
+  if(animate){
+    clearTerminal();
+    System.out.println(this);
+    wait(20);
+  }
+ 
+  if (maze[row][col] == 'E'){
+    return count;
+  }
+	// continue current path
+  if (maze[row + moves[current][0]][col + moves[current][1]] == ' '){
+    maze[row][col] = '@';
+    count++;
+    return solve(row + moves[current][0], col + moves[current][1], count, current);
+  }
+  // other direction
 	for (int i = 0; i < 4; i++){
-	    if (maze[a + moves[i][0]][b + moves[i][1]] == '_'){
-		next = 
+	    if (maze[row + moves[i][0]][col + moves[i][1]] == ' '){
+        current = i;
+        return solve(row + moves[current][0], col + moves[current][1], count, current);
 	    }
+      if (maze[row + moves[i][0]][col + moves[i][1]] == 'E'){
+        count++;
+        return count;
+      }
 	}
-	//move
-
-	return count;
-	// return -1;
+    //go back
+  if (maze[row - moves[current][0]][col - moves[current][1]] == '@'){
+    maze[row][col] = '.';
+	count--;
+  return solve(row - moves[current][0], col - moves[current][1], count, current);
+  }
+  return -1;
     }
-*/
+
 }
