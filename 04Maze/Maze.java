@@ -27,16 +27,26 @@ public class Maze{
     public Maze(String filename) throws FileNotFoundException{
       File text = new File(filename);
       Scanner inf = new Scanner(text);
-      for (int i = 0; inf.hasNextLine(); i++){
-        String line = inf.nextLine();
+      int row = 0;
+      int col = 0;
+        while(inf.hasNextLine()){
+          row++;
+          String l = inf.nextLine();
+          col = l.length();
+        }
+        maze = new char[row][col];
+        File txt = new File(filename);
+      Scanner in = new Scanner(txt);
+      for (int i = 0; i < row; i++){
+        String line = in.nextLine();
         maze[i] = line.toCharArray();
       }
 
       //COMPLETE CONSTRUCTOR
         int c = 0;
 	int d = 0;
-	for (int a = 0; a < maze.length; a++){
-	    for (int b = 0; b < maze[0].length; a++){
+	for (int a = 0; a < row; a++){
+	    for (int b = 0; b < col; b++){
 		if (maze[a][b] == 'S'){
 		    c++;
 		    x = a;
