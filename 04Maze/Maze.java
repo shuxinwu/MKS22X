@@ -8,7 +8,7 @@ public class Maze{
     private int x;
     private int y;
     int[][] moves = {
-	{0,1}, {1,0}, {-1,0}, {0,-1}
+      {0,1}, {1,0}, {-1,0}, {0,-1}
     };
 
   //constructor
@@ -115,18 +115,22 @@ public class Maze{
   if (maze[row + moves[current][0]][col + moves[current][1]] == ' '){
     maze[row][col] = '@';
     count++;
-    return solve(row + moves[current][0], col + moves[current][1], count, current);
+    //   return solve(row + moves[current][0], col + moves[current][1], count, current);
   }
   // other direction
+  else{
+   
 	for (int i = 0; i < 4; i++){
-	    if (maze[row + moves[i][0]][col + moves[i][1]] == ' '){
-        current = i;
-        return solve(row + moves[current][0], col + moves[current][1], count, current);
-	    }
-      if (maze[row + moves[i][0]][col + moves[i][1]] == 'E'){
+    if (maze[row + moves[i][0]][col + moves[i][1]] == 'E'){
         count++;
         return count;
       }
+	    if (maze[row + moves[i][0]][col + moves[i][1]] == ' '){
+        current = i;
+        count++;
+        maze[row][col] = '@';
+        return solve(row + moves[current][0], col + moves[current][1], count, current);
+	    }
 	}
     //go back
   if (maze[row - moves[current][0]][col - moves[current][1]] == '@'){
@@ -134,7 +138,17 @@ public class Maze{
 	count--;
   return solve(row - moves[current][0], col - moves[current][1], count, current);
   }
-  return -1;
+  else{
+    for (int i = 0; i < 4; i++){
+      if (maze[row - moves[i][0]][col - moves[i][1]] == '@'){
+    maze[row][col] = '.';
+	count--;
+  return solve(row - moves[i][0], col - moves[i][1], count, i);
     }
-
+  }
+  }
+  }
+  // return -1;
+  return solve(row + moves[current][0], col + moves[current][1], count, current);
+  }
 }
