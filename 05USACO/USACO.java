@@ -6,10 +6,12 @@ public class USACO{
   public static int bronze(String filename) throws FileNotFoundException{
     // read in file --> instructions, array
     int[][] squares;
+    int[][] commands;
     int row = 0;
     int col = 0;
     int el = 0;
     int co = 0;
+    int ans = 0;
 
     File text = new File(filename);
     Scanner inf = new Scanner(text);
@@ -34,21 +36,32 @@ public class USACO{
     }
 
     squares = new int[row][col];
+    commands = new int[co][3];
 
     i = 4;
     while(inf.hasNextInt()){
-      squares[(i - 4) / col][(i - 4) % col] = inf.nextInt();
+      if (i < 4 + row * col){
+        squares[(i - 4) / col][(i - 4) % col] = inf.nextInt();
+      }
+      else{
+        commands[i - (4 + row * col) / 3][i - (4 + row * col) % 3]] = inf.nextInt();
+      }
       i++;
-
     }
 
 
     // follow through w stomps, recalc nums
 
+  // find elevations
+  for (int a = 0; a < row; a++){
+    for (int b = 0; b < col; b++){
+      squares[a][b] -= el;
+      ans += squares[a][b];
+    }
+  }
+
     // convert to inches
-
-    return -1;
-
+    return ans * 72 * 72;
   }
   /*
     String m = "";
