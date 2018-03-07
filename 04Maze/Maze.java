@@ -148,7 +148,7 @@ public class Maze{
   }
   }
   }
-  // return -1;
-  return solve(row + moves[current][0], col + moves[current][1], count, current);
+  return -1;
+  // return solve(row + moves[current][0], col + moves[current][1], count, current);
   }
 }
