@@ -44,7 +44,7 @@ public class USACO{
         squares[(i - 4) / col][(i - 4) % col] = inf.nextInt();
       }
       else{
-        commands[(i - (4 + row * col)) / 3][(i - (4 + row * col)) % 3]] = inf.nextInt();
+        commands[(i - (4 + row * col)) / 3][(i - (4 + row * col)) % 3] = inf.nextInt();
       }
       i++;
     }
@@ -55,15 +55,15 @@ public class USACO{
     int highest = 0;
     for (int a = 0; a < 3; a++){
       for (int b = 0; b < 3; b++){
-        if (squares[a + co[z][0]][b + co[z][1]] > highest){
-          highest = squares[a + co[z][0]][b + co[z][1]];
+        if (squares[a + commands[z][0]][b + commands[z][1]] > highest){
+          highest = squares[a + commands[z][0]][b + commands[z][1]];
         }
       }
     }
     for (int a = 0; a < 3; a++){
       for (int b = 0; b < 3; b++){
-        if (squares[a + co[z][0]][b + co[z][1]] > highest - co[z][2]){
-          squares[a + co[z][0]][b + co[z][1]] = highest - co[z][2];
+        if (squares[a + commands[z][0]][b + commands[z][1]] > highest - commands[z][2]){
+          squares[a + commands[z][0]][b + commands[z][1]] = highest - commands[z][2];
         }
       }
     }
