@@ -4,15 +4,11 @@ import java.util.Scanner;
 
 public class USACO{
   public static int bronze(String filename) throws FileNotFoundException{
-    // read in file --> instructions, array
     int[][] squares;
     int[][] commands;
-    int row = 0;
-    int col = 0;
-    int el = 0;
-    int co = 0;
-    int ans = 0;
+    int row = 0, col = 0, el = 0, co = 0, ans = 0;
 
+    // read in file --> instructions, array
     File text = new File(filename);
     Scanner inf = new Scanner(text);
     int i = 0;
@@ -28,8 +24,6 @@ public class USACO{
       }
       if (i == 3){
         co = inf.nextInt();
-      }
-      if (i >= 4){
         i += 100000;
       }
       i++;
@@ -91,5 +85,64 @@ public class USACO{
     System.out.println(m);
   */
 
-  // public static int silver(String filename);
+  public static int silver(String filename) throws FileNotFoundException{
+    // read in file, assign stuff
+    char[][] grid;
+    int r = 0, c = 0, t = 0, r1 = 0, c1 = 0, r2 = 0, c2 = 0;
+
+    File text = new File(filename);
+    Scanner inf = new Scanner(text);
+    int i = 0;
+    while (inf.hasNextLine()){
+      String line = inf.nextLine();
+      Scanner s = new Scanner(line);
+      if (i == 0){
+        int a = 0;
+        while (s.hasNextInt()){
+          if (a == 0){
+            r = s.nextInt();
+          }
+          if (a == 1){
+            c = s.nextInt();
+          }
+          if (a == 2){
+            t = s.nextInt();
+          }
+        }
+      }
+      i += 100000;
+    }
+    grid = new char[r][c];
+    i = 1;
+    while(inf.hasNextLine()){
+      String line = inf.nextLine();
+      Scanner s = new Scanner(line);
+      if (i > r){
+        int a = 0;
+        while (s.hasNextInt()){
+          if (a == 0){
+            r1 = s.nextInt();
+          }
+          if (a == 1){
+            c1 = s.nextInt();
+          }
+          if (a == 2){
+            r2 = s.nextInt();
+          }
+          if (a == 3){
+            c2 = s.nextInt();
+          }
+        }
+      }
+      else{
+        for (int a = 0; a < line.length(); a++){
+          grid[i - 1][a] = line.charAt(a);
+        }
+      }
+      i++;
+    }
+
+    // figure something out
+    return -1;
+  }
 }
