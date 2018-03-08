@@ -88,7 +88,10 @@ public class USACO{
   public static int silver(String filename) throws FileNotFoundException{
     // read in file, assign stuff
     char[][] grid;
+    int[][] curPath;
+    int[][] oldPath;
     int r = 0, c = 0, t = 0, r1 = 0, c1 = 0, r2 = 0, c2 = 0;
+    int[][] moves = { {0,1}, {1,0}, {-1,0}, {0,-1} };
 
     File text = new File(filename);
     Scanner inf = new Scanner(text);
@@ -113,6 +116,8 @@ public class USACO{
       i += 100000;
     }
     grid = new char[r][c];
+    curPath = new int[r][c];
+    oldPath = new int[r][c];
     i = 1;
     while(inf.hasNextLine()){
       String line = inf.nextLine();
@@ -142,6 +147,14 @@ public class USACO{
       i++;
     }
 
+    // set up curPath or oldPath
+    oldPath[r1][c1] = 0;
+    for (int x = 0; x < 4; x++){
+	moves[x][0] moves[x][1];
+    }
+    
+    // change paths
+    
     // figure something out
     return -1;
   }
