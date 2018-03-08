@@ -44,14 +44,31 @@ public class USACO{
         squares[(i - 4) / col][(i - 4) % col] = inf.nextInt();
       }
       else{
-        commands[i - (4 + row * col) / 3][i - (4 + row * col) % 3]] = inf.nextInt();
+        commands[(i - (4 + row * col)) / 3][(i - (4 + row * col)) % 3]] = inf.nextInt();
       }
       i++;
     }
 
-
     // follow through w stomps, recalc nums
+  for (int z = 0; z < co; z++){
 
+    int highest = 0;
+    for (int a = 0; a < 3; a++){
+      for (int b = 0; b < 3; b++){
+        if (squares[a + co[z][0]][b + co[z][1]] > highest){
+          highest = squares[a + co[z][0]][b + co[z][1]];
+        }
+      }
+    }
+    for (int a = 0; a < 3; a++){
+      for (int b = 0; b < 3; b++){
+        if (squares[a + co[z][0]][b + co[z][1]] > highest - co[z][2]){
+          squares[a + co[z][0]][b + co[z][1]] = highest - co[z][2];
+        }
+      }
+    }
+
+  }
   // find elevations
   for (int a = 0; a < row; a++){
     for (int b = 0; b < col; b++){
