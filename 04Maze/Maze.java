@@ -15,6 +15,7 @@ public class Maze{
     public Maze(String filename) throws FileNotFoundException{
       File text = new File(filename);
       Scanner inf = new Scanner(text);
+      animate = false;
       int row = 0;
       int col = 0;
         while(inf.hasNextLine()){
@@ -109,13 +110,14 @@ public class Maze{
   }
  
   if (maze[row][col] == 'E'){
+    count++;
     return count;
   }
 	// continue current path
   if (maze[row + moves[current][0]][col + moves[current][1]] == ' '){
     maze[row][col] = '@';
     count++;
-    //   return solve(row + moves[current][0], col + moves[current][1], count, current);
+    return solve(row + moves[current][0], col + moves[current][1], count, current);
   }
   // other direction
   else{
@@ -126,10 +128,9 @@ public class Maze{
         return count;
       }
 	    if (maze[row + moves[i][0]][col + moves[i][1]] == ' '){
-        current = i;
         count++;
         maze[row][col] = '@';
-        return solve(row + moves[current][0], col + moves[current][1], count, current);
+        return solve(row + moves[i][0], col + moves[i][1], count, i);
 	    }
 	}
     //go back
@@ -149,6 +150,5 @@ public class Maze{
   }
   }
   return -1;
-  // return solve(row + moves[current][0], col + moves[current][1], count, current);
   }
 }
