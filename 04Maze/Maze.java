@@ -51,7 +51,7 @@ public class Maze{
 	setAnimate(animate);
     }
 
-  public String getMaze(){
+  public String toString(){
     String m = "";
     for(int a = 0; a < maze.length; a++){
         for (int b = 0; b < maze[0].length; b++){
