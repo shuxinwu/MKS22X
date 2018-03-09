@@ -13,7 +13,7 @@ public class USACO{
     File text = new File(filename);
     Scanner inf = new Scanner(text);
     int i = 0;
-    while(inf.hasNextInt() && i < 100000){
+    while(inf.hasNextInt() && i < 4 ){
       if (i == 0){
         row = inf.nextInt();
       }
@@ -36,18 +36,20 @@ public class USACO{
     Scanner in = new Scanner(txt);
     i = 0;
     while(in.hasNextInt() && i < (4 + row * col + co * 3)){
-      if (i >= 4 && i < 4 + row * col){
-    System.out.println(i);
-    System.out.println(in.nextInt());
-        squares[(i - 4) / col][(i - 4) % col] = in.nextInt();
-        //   System.out.println(in.nextInt());
-      }
-      else{
-        if (i >= 4){
+	System.out.println(i + "s");
+	System.out.println(in.nextInt() + "s");
+	if (i >= 4){
+	    if (i < (row * col) + 4){
+		System.out.println(i);
+		System.out.println(in.nextInt());
+		squares[(i - 4) / col][(i - 4) % col] = in.nextInt();
+		//   System.out.println(in.nextInt());
+	    }
+	    else{
           commands[(i - (4 + row * col)) / 3][(i - (4 + row * col)) % 3] = in.nextInt();
-        }
       }
-      i++;
+	}
+	i++;
     }
     
     // follow through w stomps, recalc nums
@@ -56,7 +58,7 @@ public class USACO{
     int highest = 0;
     for (int a = 0; a < 3; a++){
       for (int b = 0; b < 3; b++){
-        System.out.println(commands[z][0]);
+	  //    System.out.println(commands[z][0]);
         if (squares[a + commands[z][0]][b + commands[z][1]] > highest){
           highest = squares[a + commands[z][0]][b + commands[z][1]];
         }
@@ -191,17 +193,15 @@ public class USACO{
     return curPath[r2][c2];
     // return -1;
   }
-  /*
+  
   public static void main(String[] args){
     try{
-      //      System.out.println(silver("input.txt"));
       System.out.println(bronze("cowStomp.txt"));
-      System.out.println(silver("input.txt"));
-            
+      // System.out.println(silver("input.txt"));         
     }
     catch(FileNotFoundException e){
-      System.out.println("c");
+	//  System.out.println("c");
     }
   }
-  */
+  
 }
