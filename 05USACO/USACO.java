@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class USACO{
   public static int bronze(String filename) throws FileNotFoundException{
     int[][] squares;
-    int[][] commands;
-    
+    int[][] commands;   
     int row = 0, col = 0, el = 0, co = 0, ans = 0;
 
     // read in file --> instructions, array
@@ -52,7 +51,6 @@ public class USACO{
     
     // follow through w stomps, recalc nums
   for (int z = 0; z < co; z++){
-
     int highest = 0;
     for (int a = 0; a < 3; a++){
       for (int b = 0; b < 3; b++){
@@ -84,17 +82,6 @@ public class USACO{
     // convert to inches
     return ans * 72 * 72;
   }
-  /* // for checking arrays
-    String m = "";
-    for(int a = 0; a < squares.length; a++){
-      for (int b = 0; b < squares[0].length; b++){
-        m += squares[a][b];
-        m += " ";
-      }
-      m += "\n";
-    }
-    System.out.println(m);   
-  */
 
   public static int silver(String filename) throws FileNotFoundException{
     // read in file, assign stuff
@@ -107,62 +94,77 @@ public class USACO{
     File text = new File(filename);
     Scanner inf = new Scanner(text);
     int i = 0;
+    int w;
     while (inf.hasNextLine() && i < 1){
       String line = inf.nextLine();
       Scanner s = new Scanner(line);
       if (i == 0){
         int a = 0;
         while (s.hasNextInt()){
+	    w = s.nextInt();
           if (a == 0){
-            r = s.nextInt();
+	      r = w;
           }
           if (a == 1){
-            c = s.nextInt();
+            c = w;
           }
           if (a == 2){
-            t = s.nextInt();
+            t = w;
           }
-        }
-      }
-    }
-    grid = new char[r][c];
-    curPath = new int[r][c];
-    oldPath = new int[r][c];
-    i = 1;
-    while(inf.hasNextLine()){
-      String line = inf.nextLine();
-      Scanner s = new Scanner(line);
-      if (i > r){
-        int a = 0;
-        while (s.hasNextInt()){
-          if (a == 0){
-            r1 = s.nextInt();
-          }
-          if (a == 1){
-            c1 = s.nextInt();
-          }
-          if (a == 2){
-            r2 = s.nextInt();
-          }
-          if (a == 3){
-            c2 = s.nextInt();
-          }
-        }
-      }
-      else{
-        for (int a = 0; a < line.length(); a++){
-          grid[i - 1][a] = line.charAt(a);
+	  a++;
         }
       }
       i++;
     }
-
+    
+    grid = new char[r][c];
+    curPath = new int[r][c];
+    oldPath = new int[r][c];
+    
+    File txt = new File(filename);
+    Scanner in = new Scanner(txt);
+    i = 0;
+    
+    while(in.hasNextLine()){
+      String line = in.nextLine();
+      Scanner s = new Scanner(line);
+      if (i > r){
+        int a = 0;
+        while (s.hasNextInt()){
+	    w = s.nextInt();
+          if (a == 0){
+            r1 = w;
+          }
+          if (a == 1){
+            c1 = w;
+          }
+          if (a == 2){
+            r2 = w;
+          }
+          if (a == 3){
+            c2 = w;
+          }
+	  a++;
+        }
+      }
+      else{
+	  if (i > 0){
+	      for (int a = 0; a < line.length(); a++){
+		  grid[i - 1][a] = line.charAt(a);
+	      }
+	  }
+      }
+      i++;
+    }
+    
     // set up oldPath
-    System.out.println(r1);
-      System.out.println(c1);
-    oldPath[r1][c1] = 0;
+    oldPath[r1 - 1][c1 - 1] = 0;
     for (int x = 0; x < 4; x++){
-      oldPath[r1 + moves[x][0]][c1 + moves[x][1]] = 1;
+	try{
+	    oldPath[r1 + moves[x][0] - 1][c1 + moves[x][1] - 1] = 1;
+	}
+	catch(ArrayIndexOutOfBoundsException e){
+	}
     }
     for (int a = 0; a < r; a++){
       for (int b = 0; b < c; b++){
@@ -173,35 +175,71 @@ public class USACO{
           oldPath[a][b] = -1;
         }
       }
-    }
-
+    }  
+    
     // use oldPath values to det new paths, using sum of neighbors
+    int sum;
     for (int z = 0; z < t; z++){
-      for (int a = 0; a < r; a++){
-        for (int b = 0; b < c; b++){
-          int sum = 0;
-          for (int x = 0; x < 4; x++){
-            sum += oldPath[a + moves[x][0]][b + moves[x][1]];
-          }
-          curPath[a][b] = sum;
-        }
+	for (int a = 0; a < r; a++){
+	    for (int b = 0; b < c; b++){
+		if (oldPath[a][b] != -1){
+		    sum = 0;
+		    for (int x = 0; x < 4; x++){
+			try{
+			    if (oldPath[a + moves[x][0]][b + moves[x][1]] != -1){
+				sum += oldPath[a + moves[x][0]][b + moves[x][1]];
+			    }
+			}
+			catch (ArrayIndexOutOfBoundsException e){
+			}
+		    }
+		    curPath[a][b] = sum;
+		}
+		else{
+		    curPath[a][b] = -1;
+		}
+	    }
+	}
+	/*
+	String q = "";
+    for(int a = 0; a < oldPath.length; a++){
+      for (int b = 0; b < oldPath[0].length; b++){
+        q += oldPath[a][b];
+        q += " ";
       }
-      oldPath = curPath;
+      q += "\n";
     }
-   
-    // figure something out
-    return curPath[r2][c2];
+    System.out.println("old \n" + q);
+	
+	String m = "";
+    for(int a = 0; a < curPath.length; a++){
+      for (int b = 0; b < curPath[0].length; b++){
+        m += curPath[a][b];
+        m += " ";
+      }
+      m += "\n";
+    }
+    System.out.println("current \n" + m);
+	*/
+    for (int a  = 0; a < r; a++){
+	for (int b = 0; b < r; b++){
+	    oldPath[a][b] = curPath[a][b];
+	}
+    }
+    }
+    
+    return curPath[r2 - 1][c2 - 1];
     // return -1;
   }
   
   public static void main(String[] args){
     try{
-          System.out.println(bronze("cowStomp.txt"));
-	//System.out.println(silver("input.txt"));         
+        //  System.out.println(bronze("cowStomp.txt"));
+	System.out.println(silver("input.txt"));         
     }
     catch(FileNotFoundException e){
-	//  System.out.println("c");
+      System.out.println("file ples");
     }
   }
-  
+    
 }
