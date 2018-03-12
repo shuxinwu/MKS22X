@@ -13,18 +13,20 @@ public class USACO{
     File text = new File(filename);
     Scanner inf = new Scanner(text);
     int i = 0;
+    int n;
     while(inf.hasNextInt() && i < 4 ){
+      n = inf.nextInt();
       if (i == 0){
-        row = inf.nextInt();
+        row = n;
       }
       if (i == 1){
-        col = inf.nextInt();
+        col = n;
       }
       if (i == 2){
-        el = inf.nextInt();
+        el = n;
       }
       if (i == 3){
-        co = inf.nextInt();
+        co = n;
       }
       i++;
     }
@@ -36,18 +38,14 @@ public class USACO{
     Scanner in = new Scanner(txt);
     i = 0;
     while(in.hasNextInt() && i < (4 + row * col + co * 3)){
-	System.out.println(i + "s");
-	System.out.println(in.nextInt() + "s");
+	n = in.nextInt();
 	if (i >= 4){
 	    if (i < (row * col) + 4){
-		System.out.println(i);
-		System.out.println(in.nextInt());
-		squares[(i - 4) / col][(i - 4) % col] = in.nextInt();
-		//   System.out.println(in.nextInt());
+		squares[(i - 4) / col][(i - 4) % col] = n;
 	    }
 	    else{
-          commands[(i - (4 + row * col)) / 3][(i - (4 + row * col)) % 3] = in.nextInt();
-      }
+		commands[(i - (4 + row * col)) / 3][(i - (4 + row * col)) % 3] = n;
+	    }
 	}
 	i++;
     }
@@ -58,33 +56,35 @@ public class USACO{
     int highest = 0;
     for (int a = 0; a < 3; a++){
       for (int b = 0; b < 3; b++){
-	  //    System.out.println(commands[z][0]);
-        if (squares[a + commands[z][0]][b + commands[z][1]] > highest){
-          highest = squares[a + commands[z][0]][b + commands[z][1]];
+        if (squares[a + commands[z][0] - 1][b + commands[z][1] - 1] > highest){
+          highest = squares[a + commands[z][0] - 1][b + commands[z][1] - 1];
         }
       }
     }
     for (int a = 0; a < 3; a++){
       for (int b = 0; b < 3; b++){
-        if (squares[a + commands[z][0]][b + commands[z][1]] > highest - commands[z][2]){
-          squares[a + commands[z][0]][b + commands[z][1]] = highest - commands[z][2];
+        if (squares[a + commands[z][0] - 1][b + commands[z][1] - 1] > highest - commands[z][2]){
+          squares[a + commands[z][0] - 1][b + commands[z][1] - 1] = highest - commands[z][2];
         }
       }
     }
 
   }
+    
   // find elevations
   for (int a = 0; a < row; a++){
     for (int b = 0; b < col; b++){
-      squares[a][b] -= el;
-      ans += squares[a][b];
+      squares[a][b] = el - squares[a][b];
+      if (squares[a][b] > 0){
+	  ans += squares[a][b];
+      }
     }
   }
 
     // convert to inches
     return ans * 72 * 72;
   }
-  /*
+  /* // for checking arrays
     String m = "";
     for(int a = 0; a < squares.length; a++){
       for (int b = 0; b < squares[0].length; b++){
@@ -93,7 +93,7 @@ public class USACO{
       }
       m += "\n";
     }
-    System.out.println(m);
+    System.out.println(m);   
   */
 
   public static int silver(String filename) throws FileNotFoundException{
@@ -196,8 +196,8 @@ public class USACO{
   
   public static void main(String[] args){
     try{
-      System.out.println(bronze("cowStomp.txt"));
-      // System.out.println(silver("input.txt"));         
+          System.out.println(bronze("cowStomp.txt"));
+	//System.out.println(silver("input.txt"));         
     }
     catch(FileNotFoundException e){
 	//  System.out.println("c");
