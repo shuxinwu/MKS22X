@@ -179,7 +179,7 @@ public class USACO{
     
     // use oldPath values to det new paths, using sum of neighbors
     int sum;
-    for (int z = 0; z < t; z++){
+    for (int z = 0; z < t - 1; z++){
 	for (int a = 0; a < r; a++){
 	    for (int b = 0; b < c; b++){
 		if (oldPath[a][b] != -1){
@@ -201,6 +201,7 @@ public class USACO{
 	    }
 	}
 	/*
+// for testing
 	String q = "";
     for(int a = 0; a < oldPath.length; a++){
       for (int b = 0; b < oldPath[0].length; b++){
@@ -210,7 +211,7 @@ public class USACO{
       q += "\n";
     }
     System.out.println("old \n" + q);
-	
+       	
 	String m = "";
     for(int a = 0; a < curPath.length; a++){
       for (int b = 0; b < curPath[0].length; b++){
@@ -221,21 +222,21 @@ public class USACO{
     }
     System.out.println("current \n" + m);
 	*/
-    for (int a  = 0; a < r; a++){
-	for (int b = 0; b < r; b++){
-	    oldPath[a][b] = curPath[a][b];
+       
+	for (int a  = 0; a < r; a++){
+	    for (int b = 0; b < c; b++){
+		oldPath[a][b] = curPath[a][b];
+	    }
 	}
-    }
     }
     
     return curPath[r2 - 1][c2 - 1];
-    // return -1;
   }
   
   public static void main(String[] args){
     try{
-        //  System.out.println(bronze("cowStomp.txt"));
-	System.out.println(silver("input.txt"));         
+	//    System.out.println(bronze("cowStomp.txt"));
+	//    System.out.println(silver("input.txt"));         
     }
     catch(FileNotFoundException e){
       System.out.println("file ples");
