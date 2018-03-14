@@ -2,14 +2,6 @@ import java.lang.Object;
 import java.util.*;
 
 public class Quick{
-    /*Choose a random pivot element, and modify the array such that:
- *1. Only the indices from start to end inclusive are considered in range
- *2. A random index from start to end inclusive is chosen, the corresponding 
- *   element is designated the pivot element. 
- *3. all elements in range that are smaller than the pivot element are placed before the pivot element.
- *4. all elements in range that are larger than the pivot element are placed after the pivot element.
- *@return the index of the final position of the pivot element.
- */
 
     public static int partition (int [] data, int start, int end){
  
@@ -120,6 +112,15 @@ public class Quick{
 	return large;
     }
 
+    /*
+    public static int quickSelect(int[] data, int k){
+	int i = partition(data, 0, data.length - 1);
+        
+	return partition(data, 0, i - 1);
+	return partition(data, i + 1, data.length - 1);
+	return i;
+    }
+    */
     public static void main(String[] args){
 	int[] ary = {2, 10, 7, 8, 5, 2, 4, 9, 11, 6};
 	System.out.println(Arrays.toString(ary));
