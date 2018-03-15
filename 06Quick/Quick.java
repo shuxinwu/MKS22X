@@ -11,20 +11,28 @@ public class Quick{
 	//	System.out.println(pivot);
 	
 	// indices of nums to look at
+	int c;
 	int small = start + 1;
 	int large = end;
 	
-	while (small <= large){
-	    if (data[small] < pivot){
-		small++;
+	while (c <= large){
+	    if (data[small] == pivot){
+		c++;
 	    }	    	   	    
 	    else{
-		swap(data, small, large);
-		large--;
+		if (data[small] > pivot){
+		    swap(data, c, large);
+		    large++;
+		}
+		else{
+		    swap(data, small, c);
+		    small++;
+		    c++;
+		}
 	    }
 	}
 	
-	swap(data, large, start);
+	//	swap(data, large, start);
 	// System.out.println(Arrays.toString(data));
 	return large;
     }
