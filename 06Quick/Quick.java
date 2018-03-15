@@ -37,18 +37,26 @@ public class Quick{
 	data[b] = x;
     }
     
-    /*
     public static int quickselect(int[] data, int k){
 	int i = partition(data, 0, data.length - 1);
-        
-	return partition(data, 0, i - 1);
-	return partition(data, i + 1, data.length - 1);
-	return i;
+        while (i != k){
+	    if (k < i){
+		i = partition(data, 0, i - 1);
+	    }
+	    if (k > i){
+		i = partition(data, i + 1, data.length - 1);
+	    }
+	}
+	return data[i];
     }
-    */
+    
     public static void main(String[] args){
-	int[] ary = {2, 10, 7, 8, 5, 2, 4, 9, 11, 6};
-	System.out.println(Arrays.toString(ary));
-	System.out.println(partition(ary, 2, 9));
+	int[] ary = {2, 10, 15, 23, 0, 5};
+	System.out.println(quickselect(ary, 0));
+	System.out.println(quickselect(ary, 1));
+	System.out.println(quickselect(ary, 2));
+	System.out.println(quickselect(ary, 3));
+	System.out.println(quickselect(ary, 4));
+	System.out.println(quickselect(ary, 5));
     }
 }
