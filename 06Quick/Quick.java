@@ -8,28 +8,25 @@ public class Quick{
 	// setup
 	int index = start + (int)(Math.random() * (end - start));
 	int pivot = data[index];
-	System.out.println(pivot);
-	int old = data[start];
-        data[start] = pivot;
-	data[index] = old;
+	swap(data, start, index);
+	//	System.out.println(pivot);
+	
 	// indices of nums to look at
 	int small = start + 1;
 	int large = end;
-
-	System.out.println(Arrays.toString(data));
 	
 	while (small <= large){
 	    if (data[small] < pivot){
 		small++;
 	    }	    	   	    
 	    else{
+		swap(data, small, large);
 		large--;
 	    }
-	
-	    //	    System.out.println(Arrays.toString(data));
 	}
 	
-	data[large] = pivot;
+	swap(data, large, start);
+	// System.out.println(Arrays.toString(data));
 	return large;
     }
 
@@ -41,7 +38,7 @@ public class Quick{
     }
     
     /*
-    public static int quickSelect(int[] data, int k){
+    public static int quickselect(int[] data, int k){
 	int i = partition(data, 0, data.length - 1);
         
 	return partition(data, 0, i - 1);
