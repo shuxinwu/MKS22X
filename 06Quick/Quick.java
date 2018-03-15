@@ -3,8 +3,7 @@ import java.util.*;
 
 public class Quick{
 
-    public static int partition (int [] data, int start, int end){
- 
+    public static int partition (int [] data, int start, int end){ 
 	// setup
 	int index = start + (int)(Math.random() * (end - start));
 	int pivot = data[index];
@@ -36,7 +35,8 @@ public class Quick{
 	data[a] = y;
 	data[b] = x;
     }
-    
+
+    // kth smallest element
     public static int quickselect(int[] data, int k){
 	int i = partition(data, 0, data.length - 1);
         while (i != k){
@@ -49,14 +49,17 @@ public class Quick{
 	}
 	return data[i];
     }
+
+    public static void quicksort(int[] data){
+	// starting point
+	
+	//	System.out.println(Arrays.toString(data));
+    }
     
     public static void main(String[] args){
-	int[] ary = {2, 10, 15, 23, 0, 5};
-	System.out.println(quickselect(ary, 0));
-	System.out.println(quickselect(ary, 1));
-	System.out.println(quickselect(ary, 2));
-	System.out.println(quickselect(ary, 3));
-	System.out.println(quickselect(ary, 4));
-	System.out.println(quickselect(ary, 5));
+	int[] ary = {2, 10, 15, 23, 0, 5, 1, 19, 22, 3, 2, 6, 5, 77, 12};
+	System.out.println(Arrays.toString(ary));
+        quicksort(ary);
+	System.out.println(Arrays.toString(ary));
     }
 }
