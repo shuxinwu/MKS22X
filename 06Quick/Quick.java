@@ -7,22 +7,23 @@ public class Quick{
 	// setup
 	int index = start + (int)(Math.random() * (end - start));
 	int pivot = data[index];
+	//	System.out.println(index);
 	swap(data, start, index);
-	//	System.out.println(pivot);
+	//  	System.out.println(pivot);
 	
 	// indices of nums to look at
-	int c;
-	int small = start + 1;
+	int c = start + 1;
+	int small = start;
 	int large = end;
 	
 	while (c <= large){
-	    if (data[small] == pivot){
+	    if (data[c] == pivot){
 		c++;
 	    }	    	   	    
 	    else{
-		if (data[small] > pivot){
+		if (data[c] > pivot){
 		    swap(data, c, large);
-		    large++;
+		    large--;
 		}
 		else{
 		    swap(data, small, c);
@@ -30,11 +31,9 @@ public class Quick{
 		    c++;
 		}
 	    }
+	    //	    System.out.println(Arrays.toString(data));
 	}
-	
-	//	swap(data, large, start);
-	// System.out.println(Arrays.toString(data));
-	return large;
+	return small;
     }
 
     public static void swap(int[] data, int a, int b){
@@ -65,9 +64,11 @@ public class Quick{
     }
     
     public static void main(String[] args){
-	int[] ary = {2, 10, 15, 23, 0, 5, 1, 19, 22, 3, 2, 6, 5, 77, 12};
+	//	int[] ary = {2, 10, 15, 23, 0, 5, 1, 19, 22, 3, 2, 6, 5, 77, 12};
+	int[] ary = {0, 1, 2, 1, 2, 1, 1, 0};
 	System.out.println(Arrays.toString(ary));
-        quicksort(ary);
-	System.out.println(Arrays.toString(ary));
+	System.out.println(partition(ary, 0, 7));
+	//    quicksort(ary);
+	//	System.out.println(Arrays.toString(ary));
     }
 }
