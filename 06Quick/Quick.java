@@ -59,7 +59,7 @@ public class Quick{
 
     public static void quicksort(int[] data){
 	// starting point
-	
+
 	//	System.out.println(Arrays.toString(data));
     }
     
