@@ -59,15 +59,26 @@ public class Quick{
 
     public static void quicksort(int[] data){
 	// starting point
-
+	int z = data.length / 2;
+	
+	return quickselect(data, z);
 	//	System.out.println(Arrays.toString(data));
     }
+
+    //   public static int quickHelp(int[] data, int k){};
     
     public static void main(String[] args){
-	//	int[] ary = {2, 10, 15, 23, 0, 5, 1, 19, 22, 3, 2, 6, 5, 77, 12};
-	int[] ary = {0, 1, 2, 1, 2, 1, 1, 0};
+      	int[] ary = {2, 10, 15, 23, 0, 5, 1, 19, 22, 3, 2, 6, 5, 77, 12};
+	//	int[] ary = {0, 1, 2, 1, 2, 1, 1, 0};
 	System.out.println(Arrays.toString(ary));
-	System.out.println(partition(ary, 0, 7));
+	//	System.out.println(partition(ary, 0, 7));
+	System.out.println(quickselect(ary, 3));
+	System.out.println(Arrays.toString(ary));
+	System.out.println(quickselect(ary, 4));
+	System.out.println(Arrays.toString(ary));
+	System.out.println(quickselect(ary, 5));
+	System.out.println(Arrays.toString(ary));
+	
 	//    quicksort(ary);
 	//	System.out.println(Arrays.toString(ary));
     }
