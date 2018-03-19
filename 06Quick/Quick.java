@@ -4,9 +4,6 @@ import java.util.*;
 public class Quick{
 
     public static int partition(int[] data, int start, int end){
-	if (start == end){
-	    return -1;
-	}
 	// setup
 	int index = start + (int)(Math.random() * (end - start));
 	int pivot = data[index];
@@ -61,7 +58,8 @@ public class Quick{
     }
 
     public static void quicksort(int[] data){
-	// starting point
+	/*
+	// choose a starting point
 	//	if (partition(data, 0, data.length - 1) == -1)
 	int a = partition(data, 0, data.length - 1);
 	if (a != -1){
@@ -72,11 +70,25 @@ public class Quick{
 	// right
 	quickHelp(data, a + 1, data.length - 1);
 	//	System.out.println(Arrays.toString(data));
+	*/
+	quickHelp(data, 0, data.length - 1, data.length / 2);
     }
 
-    /*
-    public static int quickHelp(int[] data, int start, int end){    }
-    */
+    public static int quickHelp(int[] data, int start, int end, int sp){ 
+	if (start == end){
+	    return -1;
+	}
+	
+	// left
+	partition(data, start, sp);
+		  //	quickHelp(data, start, sp);
+	// right
+		  //	quickHelp(data, sp + 1, end);
+	partition(data, sp + 1, end);
+	sp = partition(data, start, end);
+	quickHelp(data, start, end, sp);
+    }
+    
     
     public static void main(String[] args){
       	int[] ary = {2, 10, 15, 23, 0, 5, 1, 19, 22, 3, 2, 6, 5, 77, 12};
