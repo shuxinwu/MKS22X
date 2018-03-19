@@ -86,7 +86,7 @@ public class Quick{
 		  //	quickHelp(data, sp + 1, end);
 	partition(data, sp + 1, end);
 	sp = partition(data, start, end);
-	quickHelp(data, start, end, sp);
+	return quickHelp(data, start, end, sp);
     }
     
     
