@@ -7,9 +7,9 @@ public class Quick{
 	// setup
 	int index = start + (int)(Math.random() * (end - start));
 	int pivot = data[index];
-       	System.out.println("index: " + index);
+	//   	System.out.println("index: " + index);
 	swap(data, start, index);
-       	System.out.println("pivot: " + pivot);
+	//    	System.out.println("pivot: " + pivot);
 	
 	// indices of nums to look at
 	int c = start + 1;
@@ -62,6 +62,7 @@ public class Quick{
     }
 
     public static void quickHelp(int[] data, int start, int end){
+ 
 	if (start < end){
 	    // starting point
 	    int sp = partition(data, start, end);
@@ -70,16 +71,15 @@ public class Quick{
 	    // right
 	    quickHelp(data, sp + 1, end);
 	}
-    }
-    
+    }   
     
     public static void main(String[] args){
-      	int[] ary = {3, 4, 1, 0, 6, 6, 4, 88, 22, 19, 100};
+	//	int[] ary = {3, 4, 1, 0, 6, 6, 4, 88, 22, 100};
 	//	int[] ary = {0, 1, 2, 1, 2, 1, 1, 0};
-	System.out.println(Arrays.toString(ary));
-	System.out.println(ary.length);
+	//	System.out.println(Arrays.toString(ary));
+	//	System.out.println(ary.length);
 	//	System.out.println(partition(ary, 0, 7));
-        quicksort(ary);
-	System.out.println(Arrays.toString(ary));
+	//      quicksort(ary);
+	//	System.out.println(Arrays.toString(ary));
     }
 }
