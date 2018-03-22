@@ -82,8 +82,7 @@ public class Quick{
 	//	System.out.println(partition(ary, 0, 7));
 	//      quicksort(ary);
 	//      System.out.println(Arrays.toString(ary));
-    }
-    
+    } 
 
     /*
 
