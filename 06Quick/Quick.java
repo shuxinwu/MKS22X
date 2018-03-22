@@ -73,7 +73,7 @@ public class Quick{
 	}
     }   
 
-    /*  
+      
     public static void main(String[] args){
 	//	int[] ary = {3, 4, 1, 0, 6, 6, 4, 88, 22, 100};
 	//	int[] ary = {0, 1, 2, 1, 2, 1, 1, 0};
@@ -83,7 +83,7 @@ public class Quick{
 	//      quicksort(ary);
 	//      System.out.println(Arrays.toString(ary));
     }
-    */
+    
 
     /*
 
