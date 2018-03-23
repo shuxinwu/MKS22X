@@ -67,6 +67,7 @@ public class Driver{
     
 	long startTime = System.currentTimeMillis();
 	// Test your sort here!
+	Quick.quicksort(start);
     
 	long elapsedTime = System.currentTimeMillis() - startTime;
 	if(Arrays.equals(start,result)){
