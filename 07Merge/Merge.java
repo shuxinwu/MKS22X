@@ -39,9 +39,6 @@ public class Merge{
 	int i = l;
 	// comparison
 	while (lo <= mid && m <= hi){
-	    //	    System.out.println("i: " + i);
-	    //	    System.out.println("a: " + a);
-	    //	    System.out.println("b: " + b);
 	    if (a < b){
 		data[i] = a;
 		lo++;
@@ -56,15 +53,20 @@ public class Merge{
 	    System.out.println("data:" + Arrays.toString(data));
 	}
 	if (lo > mid){
-	    while (i < hi){
+	    while (i <= hi){
+		System.out.println("i: " + i);;
+		System.out.println("b: " + b);
 		data[i] = b;
+		System.out.println(Arrays.toString(data));
 		m++;
 		b = temp[m];
 		i++;
 	    }
 	}
 	if (m > hi){
-	    while (i < hi){
+	    while (i <= hi){
+		System.out.println("i: " + i);
+		System.out.println("a: " + a);
 		data[i] = a;
 		lo++;
 		a = temp[lo];
@@ -75,8 +77,8 @@ public class Merge{
     }
 
     public static void main(String[] args){
-	int[] ary = {3, 5, 7, 0, 4, 8, 14};
-	int[] data = {14, 4, 7, 0, 8, 5, 3};
+       	int[] ary = {3, 5, 7, 0, 4, 8, 14};
+       	int[] data = {14, 4, 7, 0, 8, 5, 3};
 	//	int[] ary = {3, 4, 1, 0, 6, 6, 4, 88, 22, 100};
 	//	int[] ary = {0, 1, 2, 1, 2, 1, 1, 0};
        	System.out.println("ary:" + Arrays.toString(ary));
