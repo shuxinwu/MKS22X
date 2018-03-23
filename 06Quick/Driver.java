@@ -68,8 +68,10 @@ public class Driver{
 	long startTime = System.currentTimeMillis();
 	// Test your sort here!
 	Quick.quicksort(start);
-    
+
+	//	System.out.println(Arrays.toString(start));
 	long elapsedTime = System.currentTimeMillis() - startTime;
+	System.out.println(elapsedTime);
 	if(Arrays.equals(start,result)){
 	    System.out.println("PASS Case "+name(type)+" array, size:"+size+" "+elapsedTime/1000.0+"sec ");
 	}else{
