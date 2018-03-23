@@ -25,15 +25,18 @@ public class Merge{
 	    merge(data, temp, lo, mid, hi);
 	}
 	
- 
     }
 
     // copy from temp back to data
     public static void merge(int[] data, int[] temp, int lo, int mid, int hi){
+	// ints to be used
+	// a and b for elements
+	// lo and m for indices
 	int l = lo;
 	int m = mid + 1;
 	int a = temp[lo];
 	int b = temp[m];
+	// comparison
 	for (int i = l ; i < hi; i++){
 	    //	    a = temp[lo];
 	    //	    b = temp[m];
@@ -51,6 +54,18 @@ public class Merge{
 	
     }
 
-    public static void main(String[] args){};
+    public static void main(String[] args){
+	int[] ary = {3, 5, 7, 0, 4, 8, 14};
+	int[] data = {14, 4, 7, 0, 8, 5, 3};
+	//	int[] ary = {3, 4, 1, 0, 6, 6, 4, 88, 22, 100};
+	//	int[] ary = {0, 1, 2, 1, 2, 1, 1, 0};
+       	System.out.println("ary:" + Arrays.toString(ary));
+	System.out.println("data:" + Arrays.toString(data));
+      	//	System.out.println(ary.length);
+        merge(data, ary, 0, 2, 6);
+	//      mergesort(ary);
+	System.out.println("ary:" + Arrays.toString(ary));
+	System.out.println("data:" + Arrays.toString(data));
+    }
 
 }
