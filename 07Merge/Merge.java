@@ -36,10 +36,12 @@ public class Merge{
 	int m = mid + 1;
 	int a = temp[lo];
 	int b = temp[m];
+	int i = l;
 	// comparison
-	for (int i = l ; i < hi; i++){
-	    //	    a = temp[lo];
-	    //	    b = temp[m];
+	while (lo <= mid && m <= hi){
+	    //	    System.out.println("i: " + i);
+	    //	    System.out.println("a: " + a);
+	    //	    System.out.println("b: " + b);
 	    if (a < b){
 		data[i] = a;
 		lo++;
@@ -50,6 +52,24 @@ public class Merge{
 		m++;
 		b = temp[m];
 	    }
+	    i++;
+	    System.out.println("data:" + Arrays.toString(data));
+	}
+	if (lo > mid){
+	    while (i < hi){
+		data[i] = b;
+		m++;
+		b = temp[m];
+		i++;
+	    }
+	}
+	if (m > hi){
+	    while (i < hi){
+		data[i] = a;
+		lo++;
+		a = temp[lo];
+		i++;
+	    }	
 	}
 	
     }
