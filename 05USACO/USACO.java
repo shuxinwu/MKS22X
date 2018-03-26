@@ -200,28 +200,6 @@ public class USACO{
 		}
 	    }
 	}
-	/*
-// for testing
-	String q = "";
-    for(int a = 0; a < oldPath.length; a++){
-      for (int b = 0; b < oldPath[0].length; b++){
-        q += oldPath[a][b];
-        q += " ";
-      }
-      q += "\n";
-    }
-    System.out.println("old \n" + q);
-       	
-	String m = "";
-    for(int a = 0; a < curPath.length; a++){
-      for (int b = 0; b < curPath[0].length; b++){
-        m += curPath[a][b];
-        m += " ";
-      }
-      m += "\n";
-    }
-    System.out.println("current \n" + m);
-	*/
        
 	for (int a  = 0; a < r; a++){
 	    for (int b = 0; b < c; b++){
@@ -234,13 +212,15 @@ public class USACO{
   }
   
   public static void main(String[] args){
+      /*
     try{
-	//    System.out.println(bronze("cowStomp.txt"));
-	//    System.out.println(silver("input.txt"));         
+        System.out.println(bronze("cowStomp.txt"));
+	System.out.println(silver("input.txt"));         
     }
     catch(FileNotFoundException e){
       System.out.println("file ples");
     }
+      */
   }
     
 }
