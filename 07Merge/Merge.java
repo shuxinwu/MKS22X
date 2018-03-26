@@ -37,8 +37,11 @@ public class Merge{
 	int a = temp[lo];
 	int b = temp[m];
 	int i = l;
+	System.out.println("mid: " + mid);
 	// comparison
 	while (lo <= mid && m <= hi){
+	    System.out.println(a);
+	    System.out.println(b);
 	    if (a < b){
 		data[i] = a;
 		lo++;
@@ -81,14 +84,14 @@ public class Merge{
     }
 
     public static void main(String[] args){
-       	int[] ary = {3, 5, 7, 0, 4, 8, 14};
-       	int[] data = {14, 4, 7, 0, 8, 5, 3};
+       	int[] ary = {1, 3, 5, 7, 0, 4, 8, 14};
+       	int[] data = {14, 4, 1, 7, 0, 8, 5, 3};
 	//	int[] ary = {3, 4, 1, 0, 6, 6, 4, 88, 22, 100};
 	//	int[] ary = {0, 1, 2, 1, 2, 1, 1, 0};
        	System.out.println("ary:" + Arrays.toString(ary));
 	System.out.println("data:" + Arrays.toString(data));
       	//	System.out.println(ary.length);
-        merge(data, ary, 0, 2, 6);
+        merge(data, ary, 0, 3, data.length - 1);
 	//      mergesort(ary);
 	System.out.println("ary:" + Arrays.toString(ary));
 	System.out.println("data:" + Arrays.toString(data));
