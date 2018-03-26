@@ -12,12 +12,12 @@ public class Merge{
     private static void msort(int[]data, int[]temp, int lo, int hi){	
 	if (lo <= hi){
 	    //   copy   data[ lo ] through data[hi]    into    temp[lo] through temp[hi]
-	    for (int i = lo; i < hi; i++){
+	    for (int i = lo; i <= hi; i++){
 		int a = data[i];
 		temp[i] = a;
 	    }
-	    System.out.println("temp" + Arrays.toString(temp));
-	    /*
+	    System.out.println("temp: " + Arrays.toString(temp));
+	   
 	    // get mid
 	    int mid = (lo + hi) / 2;
 	    //  call msort() on each half, but switch the temp and data!
@@ -25,7 +25,7 @@ public class Merge{
 	    msort(temp, data, mid + 1, hi);
 	    //  call merge
 	    merge(data, temp, lo, mid, hi);
-	    */
+	   
 	}
 	
     }
