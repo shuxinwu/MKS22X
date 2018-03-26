@@ -59,7 +59,9 @@ public class Merge{
 		data[i] = b;
 		System.out.println(Arrays.toString(data));
 		m++;
-		b = temp[m];
+		if (m < temp.length){
+		    b = temp[m];
+		}
 		i++;
 	    }
 	}
@@ -69,7 +71,9 @@ public class Merge{
 		System.out.println("a: " + a);
 		data[i] = a;
 		lo++;
-		a = temp[lo];
+		if (lo < temp.length){
+		    a = temp[lo];		    
+		}
 		i++;
 	    }	
 	}
