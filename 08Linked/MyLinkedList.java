@@ -23,6 +23,7 @@ public class MyLinkedList{
     }
     
     /*
+// should all throw appropriate exceptions
     public int get(n){};
 
     public void set(int index, int value){};
@@ -30,6 +31,7 @@ public class MyLinkedList{
     public int size(){};    
 
     public remove(int index){};
+//IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
     */
 
     public static void main(String[] args){
