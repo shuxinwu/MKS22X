@@ -5,17 +5,19 @@ public class MyLinkedList{
     int length;
 
     public MyLinkedList(){
-        first = null;
-	last = null;
+   
     }
 
-    public boolean add(int index, int value){
-	
+    public boolean add(int value){
+	Node a = new Node();
+	a.setValue(value);
+	last.setNext(a);
 	return true;
     }
 
     public String toString(){
 	String s = "";
+
 	
 	return s;
     }
@@ -29,4 +31,8 @@ public class MyLinkedList{
 
     public remove(int index){};
     */
+
+    public static void main(String[] args){
+	MyLinkedList a = new MyLinkedList();
+    }
 }

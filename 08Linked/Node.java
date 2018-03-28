@@ -22,5 +22,20 @@ public class Node{
 	return data;
     }
 
-    //    public String toString(){ };
+    public void setValue(int value){
+	data = value;
+    }
+
+    public String toString(){
+	String s = "";
+	while (next != null){
+	    s += getNext();
+	    s += " ";
+	}
+	return s;
+    }
+
+    public static void main(String[] args){
+
+    }
 }
