@@ -15,6 +15,10 @@ public class Node{
 	next = b;
     }
 
+    public void setNext(Node a){
+	next = a;
+    }
+    
     public Node getPrev(){
 	return prev;
     }
