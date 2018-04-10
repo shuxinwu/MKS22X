@@ -10,9 +10,14 @@ public class MyLinkedList{
 
     public boolean add(Integer newData){
 	Node a = new Node(newData);
-	//	a.setValue(newData);
+      	a.setValue(newData);
+	// null pointer ex for a
+
+	System.out.println("newData: " + newData);
+	System.out.println("a: " + a);
+
 	if (length == 0){
-	    first.setValue(newData);
+       	    first.setValue(newData);
 	}
 	last.setNext(a);
 	System.out.println(a);
@@ -55,7 +60,7 @@ public class MyLinkedList{
     public static void main(String[] args){
 	MyLinkedList a = new MyLinkedList();
 	System.out.println(a);
-	a.add(14);
+	a.add(4);
 	a.add(19);
 	System.out.println(a);
     }
