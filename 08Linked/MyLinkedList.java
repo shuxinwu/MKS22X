@@ -52,10 +52,16 @@ public class MyLinkedList{
 	return current.getValue();
     }
 
-    /*
     public Integer set(int index, Integer value){ // exceptions
-	int 
-
+	Integer i = 0;
+	Node current = first;
+	while (i < index){
+	    current = current.getNext();
+	    i++;
+	}
+	i = current.getValue();
+	current.setValue(value);
+	return i;
     }
     //    private Node getNode(int index){};
     
@@ -84,5 +90,7 @@ public class MyLinkedList{
 	a.add(89);
 	System.out.println(a);
 	System.out.println(a.get(4));
+	a.set(3, 1);
+	System.out.println(a);
     }
 }
