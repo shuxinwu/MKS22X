@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class MyLinkedList{
-    Node first, last;
-    int length;
+    private Node first, last;
+    private int length;
 
     public MyLinkedList(){
 	length = 0;
@@ -10,17 +10,16 @@ public class MyLinkedList{
 
     public boolean add(Integer newData){
 	Node a = new Node(newData);
-      	a.setValue(newData);
-	// null pointer ex for a
-
-	System.out.println("newData: " + newData);
-	System.out.println("a: " + a);
-
+      
 	if (length == 0){
-       	    first.setValue(newData);
+	    first = new Node(newData);
+	    last = first;
 	}
-	last.setNext(a);
-	System.out.println(a);
+	else{
+	    last.setNext(a);
+	    last = last.getNext();
+	}
+	length++;
 	return true;
     }
 
@@ -29,19 +28,38 @@ public class MyLinkedList{
 	    return "empty";
 	}
 	String s = "";
-	
+	Node current = first;
+	while (current != null){
+	    s += current;
+	    s += ", ";
+	    current = current.getNext();
+	}
 	return s;
     }
 
+    public int size(){
+	return length;
+    }
+
+    // should all throw appropriate exceptions
+    public Integer get(int index){ // exceptions
+	int i = 0;
+	Node current = first;
+	while (i < index){
+	    current = current.getNext();
+	    i++;
+	}
+	return current.getValue();
+    }
+
+    /*
+    public Integer set(int index, Integer value){ // exceptions
+	int 
+
+    }
     //    private Node getNode(int index){};
     
     /*
-// should all throw appropriate exceptions
-    public Integer get(int index){}; // exceptions
-
-    public Integer set(int index, Integer value){}; // exceptions
-
-    public int size(){};    
 
     public void clear();
 
@@ -59,9 +77,12 @@ public class MyLinkedList{
 
     public static void main(String[] args){
 	MyLinkedList a = new MyLinkedList();
-	System.out.println(a);
 	a.add(4);
 	a.add(19);
+	a.add(900);
+	a.add(22);
+	a.add(89);
 	System.out.println(a);
+	System.out.println(a.get(4));
     }
 }
