@@ -30,10 +30,11 @@ public class MyLinkedList{
 	String s = "";
 	Node current = first;
 	while (current != null){
-	    s += current;
+     	    s += current;
 	    s += ", ";
 	    current = current.getNext();
 	}
+	s -+ ", ";
 	return s;
     }
 
