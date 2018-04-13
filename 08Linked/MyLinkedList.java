@@ -42,25 +42,14 @@ public class MyLinkedList{
 
     // tested
     public Integer get(int index){ // exceptions not done
-	int i = 0;
-	Node current = first;
-	while (i < index){
-	    current = current.getNext();
-	    i++;
-	}
-	return current.getValue();
+        return getNode(index).getValue();
     }
 
     // tested
     public Integer set(int index, Integer value){ // exceptions
 	Integer i = 0;
-	Node current = first;
-	while (i < index){
-	    current = current.getNext();
-	    i++;
-	}
-	i = current.getValue();
-	current.setValue(value);
+	i = getNode(index).getValue();
+        getNode(index).setValue(value);
 	return i;
     }
 
@@ -76,10 +65,8 @@ public class MyLinkedList{
 	return -1;
     }
 
-    // not added, or not printing
+    // tested
     public void add(int index, Integer value){ // exceptions not done
-       	
-
 	if (index == length){
 	    add(value);
 	}
@@ -155,7 +142,8 @@ public class MyLinkedList{
 	a.add(22);
 	a.add(89);
 	System.out.println(a);
-	System.out.println(a.getNode(2));
+	System.out.println(a.get(2));
+	System.out.println(a.set(2, 99));
 	a.add(1, 2);
 	System.out.println(a);
     }
