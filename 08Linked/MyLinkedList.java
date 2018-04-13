@@ -93,6 +93,7 @@ public class MyLinkedList{
 	}
     }
 
+    // npe
     public boolean remove(Integer value){
 	int i = 0;
 	Node current = first;
@@ -108,17 +109,13 @@ public class MyLinkedList{
     }
 
     public int remove(int index){
-	int i = 0;
-	int v = 0;
-	Node current = first;
-	while (i < length){
-	    if (i == index){
-		v = current.getValue();
-		current.setValue(current.getNext().getValue());
-	    }
-
-	    current = current.getNext();
-	    i++;
+	int v = getNode(index).getValue();
+	if (index == length - 1){
+	    getNode(index - 1).setNext(null);
+	}
+	else{
+	    getNode(index - 1).setNext(getNode(index + 1));
+	    getNode(index + 1).setPrev(getNode(index - 1));
 	}
 	length--;
 	return v;
@@ -145,6 +142,10 @@ public class MyLinkedList{
 	System.out.println(a.get(2));
 	System.out.println(a.set(2, 99));
 	a.add(1, 2);
+	System.out.println(a);
+	//	a.clear();
+	a.remove(2);
+	a.remove(4);
 	System.out.println(a);
     }
 }
