@@ -24,17 +24,14 @@ public class MyLinkedList{
 	return true;
     }
 
-    // extra comma
     public String toString(){
 	if (length == 0){
 	    return "empty";
 	}
 	String s = "";
-	Node current = first;
-	while (current != null){
-     	    s += current;
-	    s += ", ";
-	    current = current.getNext();
+	for (int i = 0; i < length; i++){
+	    s += getNode(i);
+	    s += " ";
 	}
 	return s;
     }
@@ -81,39 +78,22 @@ public class MyLinkedList{
 
     // not added, or not printing
     public void add(int index, Integer value){ // exceptions not done
-	Node current = first;
-	int a = 0, b = 0;
-	int i = 0;
-	length++;
-        while (i <= length){
-	    System.out.println(i);
-	    System.out.println(current.getValue());
-	    // value to replace
-	    if (i == index && i != length){
-		a = current.getValue();
-		current.setValue(value);
-		if (index == 0){
-		    first = current;
-		}
-	    }
-	    // to shift over
-	    if (i > index && i < length){
-		b = current.getValue();
-		current.setValue(a);
-		a = b;
+       	
 
-	    }
-	   
-	    if (i == length){
-		Node f = new Node(a);
-		current = f;
-	    }
-	    if (current != null){
-		current = current.getNext();	    
-	    }
-	    i++;
+	if (index == length){
+	    add(value);
 	}
-	last = current;
+	else{
+	    length++;
+
+	    Node a = getNode(index);
+	    Node b = new Node(value);
+	    getNode(index - 1).setNext(b);
+	    b.setNext(a);
+	    a.setPrev(b);
+	    b.setPrev(getNode(index - 1));
+	}
+	    
     }
 
     public void clear(){
