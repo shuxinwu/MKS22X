@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.Object;
 
 public class MyLinkedList{
     private Node first, last;
@@ -41,12 +42,18 @@ public class MyLinkedList{
     }
 
     // tested
-    public Integer get(int index){ // exceptions not done
+    public Integer get(int index){ // exceptions
+	if (index < 0 || index >= length){
+	    throw IndexOutOfBoundsException();
+	}
         return getNode(index).getValue();
     }
 
     // tested
     public Integer set(int index, Integer value){ // exceptions
+	if (index < 0 || index >= length){
+	    throw IndexOutOfBoundsException();
+	}
 	Integer i = 0;
 	i = getNode(index).getValue();
         getNode(index).setValue(value);
@@ -66,7 +73,10 @@ public class MyLinkedList{
     }
 
     // tested
-    public void add(int index, Integer value){ // exceptions not done
+    public void add(int index, Integer value){ // exceptions
+	if (index < 0 || index >= length){
+	    throw IndexOutOfBoundsException();
+	}
 	if (index == length){
 	    add(value);
 	}
@@ -80,38 +90,54 @@ public class MyLinkedList{
 	    a.setPrev(b);
 	    b.setPrev(getNode(index - 1));
 	}
-	    
-    }
-
-    public void clear(){
-	Node current = first;
-	Node next = current.getNext();
-	for (int i = 0; i < length; i++){
-	    next = current.getNext();
-	    current = null;
-	    next = current;
-	}
+	last = getNode(length - 1);
     }
 
     // npe
-    public boolean remove(Integer value){
-	int i = 0;
-	Node current = first;
-	while (i < length){
-	    if (current.getValue() == value){
-		current.setValue(current.getNext().getValue());
-	    }
-	    current = current.getNext();
-	    i++;
+    public void clear(){
+	int l = length;
+	for (int i = 0; i < l; i++){
+	    remove(i);
 	}
+    }
+
+    public boolean remove(Integer value){
+	Integer i = indexOf(value);
+	if (i == -1){
+	    return false;
+	}
+	else{
+	    if (i == 0){
+		getNode(i + 1).setPrev(null);
+		first = getNode(i + 1);
+	    }
+	    if (i == length -1){
+		getNode(i - 1).setNext(null);
+		last = getNode(i - 1);
+	    }
+	    else{
+		getNode(i - 1).setNext(getNode(i + 1));
+		getNode(i + 1).setPrev(getNode(i - 1));
+	    }
+	}	
 	length--;
+	    
 	return true;
     }
 
-    public int remove(int index){
-	int v = getNode(index).getValue();
+    // tested
+    public Intger remove(int index){
+	if (index < 0 || index >= length){
+	    throw IndexOutOfBoundsException();
+	}
+	Integer v = getNode(index).getValue();
+	if (index == 0){
+	    getNode(index + 1).setPrev(null);
+	    first = getNode(index + 1);
+	}
 	if (index == length - 1){
 	    getNode(index - 1).setNext(null);
+	    last = getNode(index -1);
 	}
 	else{
 	    getNode(index - 1).setNext(getNode(index + 1));
@@ -143,9 +169,10 @@ public class MyLinkedList{
 	System.out.println(a.set(2, 99));
 	a.add(1, 2);
 	System.out.println(a);
-	//	a.clear();
-	a.remove(2);
-	a.remove(4);
-	System.out.println(a);
+	//    	a.clear();
+       	a.remove(2);
+       	a.remove(4);
+	a.remove(0);
+       	System.out.println(a);
     }
 }
