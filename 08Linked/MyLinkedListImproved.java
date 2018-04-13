@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class MyLinkedListImproved<T>{
+public class MyLinkedListImproved<T> implements Comparable<T>{
     T value;
     private Node first, last;
     private int length;
@@ -179,7 +179,7 @@ public class MyLinkedListImproved<T>{
     Example:   
     public class fru<T> implements interfaceThatHas<T>{}
 
- 
+    public int compareTo(T o){};
     
     //inner iterator class > can have nodes in it
 
