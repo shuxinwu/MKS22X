@@ -84,7 +84,11 @@ public class MyLinkedList{
 	Node current = first;
 	int a = 0, b = 0;
 	int i = 0;
+	length++;
         while (i <= length){
+	    System.out.println(i);
+	    System.out.println(current.getValue());
+	    // value to replace
 	    if (i == index && i != length){
 		a = current.getValue();
 		current.setValue(value);
@@ -92,12 +96,14 @@ public class MyLinkedList{
 		    first = current;
 		}
 	    }
+	    // to shift over
 	    if (i > index && i < length){
 		b = current.getValue();
 		current.setValue(a);
 		a = b;
 
 	    }
+	   
 	    if (i == length){
 		Node f = new Node(a);
 		current = f;
@@ -108,11 +114,7 @@ public class MyLinkedList{
 	    i++;
 	}
 	last = current;
-	length++;
     }
-    
-    //    private Node getNode(int index){};
-    
 
     public void clear(){
 	Node current = first;
@@ -156,7 +158,14 @@ public class MyLinkedList{
     }
 //IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
 
-
+    // tested
+    private Node getNode(Integer index){
+	Node a = first;
+	for (int i = 0; i < index; i++){
+	    a = a.getNext();
+	}
+	return a;
+    }
 
     public static void main(String[] args){
 	MyLinkedList a = new MyLinkedList();
@@ -166,11 +175,8 @@ public class MyLinkedList{
 	a.add(22);
 	a.add(89);
 	System.out.println(a);
-	System.out.println(a.get(4));
-	a.set(3, 1);
-	System.out.println(a);
-	System.out.println(a.indexOf(1));
-	a.add(3, 2);
+	System.out.println(a.getNode(2));
+	a.add(1, 2);
 	System.out.println(a);
     }
 }
