@@ -22,9 +22,7 @@ public class MyLinkedListImproved<T>{
     }
 
     
-    
-    // tested
-    public boolean add(Integer newData){
+    public boolean add(T newData){
 	Node a = new Node(newData);
       
 	if (length == 0){
@@ -55,27 +53,24 @@ public class MyLinkedListImproved<T>{
 	return length;
     }
 
-    // tested
-    public Integer get(int index){ // exceptions
+    public T get(int index){ // exceptions
 	if (index < 0 || index >= length){
-	    throw IndexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
         return getNode(index).getValue();
     }
 
-    // tested
-    public Integer set(int index, Integer value){ // exceptions
+    public T set(int index, T value){ // exceptions
 	if (index < 0 || index >= length){
-	    throw IndexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
-	Integer i = 0;
+	T i;
 	i = getNode(index).getValue();
         getNode(index).setValue(value);
 	return i;
     }
 
-    // tested
-    public Integer indexOf(Integer value){
+    public Integer indexOf(T value){
 	Node current = first;
 	for (Integer i = 0; i < length; i++){
 	    if (current.getValue() == value){
@@ -86,10 +81,9 @@ public class MyLinkedListImproved<T>{
 	return -1;
     }
 
-    // tested
-    public void add(int index, Integer value){ // exceptions
+    public void add(int index, T value){ // exceptions
 	if (index < 0 || index >= length){
-	    throw IndexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
 	if (index == length){
 	    add(value);
@@ -107,7 +101,6 @@ public class MyLinkedListImproved<T>{
 	last = getNode(length - 1);
     }
 
-    // npe
     public void clear(){
 	int l = length;
 	for (int i = 0; i < l; i++){
@@ -115,7 +108,7 @@ public class MyLinkedListImproved<T>{
 	}
     }
 
-    public boolean remove(Integer value){
+    public boolean remove(T value){
 	Integer i = indexOf(value);
 	if (i == -1){
 	    return false;
@@ -139,12 +132,11 @@ public class MyLinkedListImproved<T>{
 	return true;
     }
 
-    // tested
-    public Intger remove(int index){
+    public T remove(int index){
 	if (index < 0 || index >= length){
-	    throw IndexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
-	Integer v = getNode(index).getValue();
+	T v = getNode(index).getValue();
 	if (index == 0){
 	    getNode(index + 1).setPrev(null);
 	    first = getNode(index + 1);
@@ -161,7 +153,6 @@ public class MyLinkedListImproved<T>{
 	return v;
     }
 
-    // tested
     private Node getNode(Integer index){
 	Node a = first;
 	for (int i = 0; i < index; i++){
@@ -170,16 +161,19 @@ public class MyLinkedListImproved<T>{
 	return a;
     }
 
-    /*
+    
 
     //phase 1 make it work with generics
+    public static void main(String[] args){
     MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
     n.add("fish");
     System.out.println(n);
     MyLinkedListImproved<Integer> m = new MyLinkedListImproved<>();
     n.add(new Integer(0));
     System.out.println(m);
+    }
 
+    /*
     //make your class Iterable
     //implements Iterable<T>  //use the existing T to substitute into iterable
     Example:   
@@ -188,6 +182,7 @@ public class MyLinkedListImproved<T>{
  
     
     //inner iterator class > can have nodes in it
+
     for (String s : n){
      
     }

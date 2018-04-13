@@ -44,7 +44,7 @@ public class MyLinkedList{
     // tested
     public Integer get(int index){ // exceptions
 	if (index < 0 || index >= length){
-	    throw IndexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
         return getNode(index).getValue();
     }
@@ -52,7 +52,7 @@ public class MyLinkedList{
     // tested
     public Integer set(int index, Integer value){ // exceptions
 	if (index < 0 || index >= length){
-	    throw IndexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
 	Integer i = 0;
 	i = getNode(index).getValue();
@@ -75,7 +75,7 @@ public class MyLinkedList{
     // tested
     public void add(int index, Integer value){ // exceptions
 	if (index < 0 || index >= length){
-	    throw IndexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
 	if (index == length){
 	    add(value);
@@ -126,9 +126,9 @@ public class MyLinkedList{
     }
 
     // tested
-    public Intger remove(int index){
+    public Integer remove(int index){
 	if (index < 0 || index >= length){
-	    throw IndexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
 	Integer v = getNode(index).getValue();
 	if (index == 0){
