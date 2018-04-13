@@ -1,8 +1,8 @@
 public class Node{
-    private int data;
+    private Integer data;
     private Node next, prev;
 
-    public Node(int value){
+    public Node(Integer value){
 	data = value;
     }
     
@@ -28,11 +28,11 @@ public class Node{
 	prev = a;
     }
 
-    public int getValue(){
+    public Integer getValue(){
 	return data;
     }
 
-    public void setValue(int value){
+    public void setValue(Integer value){
 	data = value;
     }
 

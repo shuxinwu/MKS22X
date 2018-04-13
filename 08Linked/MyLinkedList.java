@@ -8,6 +8,7 @@ public class MyLinkedList{
 	length = 0;
     }
 
+    // tested
     public boolean add(Integer newData){
 	Node a = new Node(newData);
       
@@ -23,6 +24,7 @@ public class MyLinkedList{
 	return true;
     }
 
+    // extra comma
     public String toString(){
 	if (length == 0){
 	    return "empty";
@@ -34,7 +36,6 @@ public class MyLinkedList{
 	    s += ", ";
 	    current = current.getNext();
 	}
-	s -+ ", ";
 	return s;
     }
 
@@ -42,8 +43,8 @@ public class MyLinkedList{
 	return length;
     }
 
-    // should all throw appropriate exceptions
-    public Integer get(int index){ // exceptions
+    // tested
+    public Integer get(int index){ // exceptions not done
 	int i = 0;
 	Node current = first;
 	while (i < index){
@@ -53,6 +54,7 @@ public class MyLinkedList{
 	return current.getValue();
     }
 
+    // tested
     public Integer set(int index, Integer value){ // exceptions
 	Integer i = 0;
 	Node current = first;
@@ -65,6 +67,7 @@ public class MyLinkedList{
 	return i;
     }
 
+    // tested
     public Integer indexOf(Integer value){
 	Node current = first;
 	for (Integer i = 0; i < length; i++){
@@ -77,7 +80,7 @@ public class MyLinkedList{
     }
 
     // not added, or not printing
-    public void add(int index, Integer value){ // exceptions
+    public void add(int index, Integer value){ // exceptions not done
 	Node current = first;
 	int a = 0, b = 0;
 	int i = 0;
