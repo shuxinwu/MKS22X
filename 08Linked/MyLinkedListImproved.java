@@ -1,6 +1,6 @@
-import java.util.Iterator;
+import java.util.*;
 
-public class MyLinkedListImproved<T> implements Comparable<T>{
+public class MyLinkedListImproved<T>{
     T value;
     private Node first, last;
     private int length;
@@ -169,7 +169,7 @@ public class MyLinkedListImproved<T> implements Comparable<T>{
     n.add("fish");
     System.out.println(n);
     MyLinkedListImproved<Integer> m = new MyLinkedListImproved<>();
-    n.add(new Integer(0));
+    m.add(new Integer(0));
     System.out.println(m);
     }
 
@@ -209,4 +209,48 @@ public class MyLinkedListImproved<T> implements Comparable<T>{
       public int min() -> return the index of the largest value, or -1 if the list is empty
 
     */
+
+    private class Node{
+	private T data;
+	private Node next, prev;
+
+	public Node(T value){
+	    data = value;
+	}
+    
+	public Node getNext(){
+	    if (next != null){
+		return next;
+	    }
+	    return null;
+	}
+
+	public void setNext(Node a){
+	    next = a;
+	}
+    
+	public Node getPrev(){
+	    if (prev != null){
+		return prev;
+	    }
+	    return null;
+	}
+
+	public void setPrev(Node a){
+	    prev = a;
+	}
+
+	public T getValue(){
+	    return data;
+	}
+
+	public void setValue(T value){
+	    data = value;
+	}
+
+	public String toString(){
+	    String s = " ";
+	    return s + data;
+	}
+    }
 }
