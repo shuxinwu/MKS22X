@@ -1,6 +1,7 @@
 import java.util.*;
+import java.lang.*;
 
-public class MyLinkedListImproved<T>{
+public class MyLinkedListImproved<T> extends Comparable<T> implements Iterable<T>{
     T value;
     private Node first, last;
     private int length;
@@ -159,56 +160,92 @@ public class MyLinkedListImproved<T>{
 	    a = a.getNext();
 	}
 	return a;
-    }
-
-    
+    }    
 
     //phase 1 make it work with generics
     public static void main(String[] args){
-    MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
-    n.add("fish");
-    System.out.println(n);
-    MyLinkedListImproved<Integer> m = new MyLinkedListImproved<>();
-    m.add(new Integer(0));
-    System.out.println(m);
+	MyLinkedListImproved<String> n = new MyLinkedListImproved<>();
+	n.add("fish");
+	System.out.println(n);
+	MyLinkedListImproved<Integer> m = new MyLinkedListImproved<>();
+	m.add(new Integer(0));
+	System.out.println(m);
     }
 
-    /*
+   
     //make your class Iterable
-    //implements Iterable<T>  //use the existing T to substitute into iterable
-    Example:   
-    public class fru<T> implements interfaceThatHas<T>{}
-
-    public int compareTo(T o){};
+    //use the existing T to substitute into iterable
+    //  Example:   
+    //  public class fru<T> implements interfaceThatHas<T>{}    
     
     //inner iterator class > can have nodes in it
+    private class Iterator{
+	private MyLinkedListImproved a;
+	private Node current = first;
+	
+	public boolean hasNext(){
+	    return current.getNext() == null;
+	}
 
-    for (String s : n){
-     
+	public T next(){
+	    if (hasNext()){
+		current = current.getNext();
+	    }
+	    else{
+		System.exit(0);
+	    }
+	    return current.getValue();
+	}
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
     }
-     
-    }
-    }
-
-
-    public boolean hasNext(){
-
-    }
-
-    public String next(){
-    }
-
-    public void remove(){
-      throw new UnsupportedOperationException();
-    }
-
-    */
     
-    /*
-      public int max() -> return the index of the largest value, or -1 if the list is empty
-      public int min() -> return the index of the largest value, or -1 if the list is empty
 
-    */
+    public int compareTo(T value){
+	if (this < value){
+	    return -1;
+	}
+	if (this.equals(value)){
+	    return 0;
+	}
+	else{
+	    return 1;
+	}
+    }
+    
+    public int max(){
+    //-> return the index of the largest value, or -1 if the list is empty
+	if (this.size() == 0){
+	    return -1;
+	}
+	int index = 0;
+	T value = first.getValue();
+	for (int i = 0; i < this.size(); i++){
+	    if (this.get(i).compareTo(value) > 0){
+		value = this.get(i);
+		index = i;
+	    }
+	}
+	return index;
+    }
+    public int min(){
+    //-> return the index of the largest value, or -1 if the list is empty
+    	if (this.size() == 0){
+	    return -1;
+	}
+	int index = 0;
+	T value = first.getValue();
+	for (int i = 0; i < this.size(); i++){
+	    if (this.get(i).compareTo(value) < 0){
+		value = this.get(i);
+		index = i;
+	    }
+	}
+	return index;
+    }
+   
 
     private class Node{
 	private T data;
