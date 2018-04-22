@@ -33,7 +33,7 @@ public class MyDeque<E>{
 	    throw new NullPointerException();
 	}
 	if (size == data.length){
-	    resize(data);
+	    resize();
 	}
 	if (data[start] != null){	    
 	    if (start == 0){
@@ -52,7 +52,7 @@ public class MyDeque<E>{
 	    throw new NullPointerException();
 	}
 	if (size == data.length){
-	    resize(data);
+	    resize();
 	}
 	if (end == data.length - 1){
 	    end = 0;
@@ -66,10 +66,18 @@ public class MyDeque<E>{
 
     // incomplete
     @SuppressWarnings("unchecked")
-    private void resize(E[] old){
+    private void resize(){
 	E[] newData;
-	newData = (E[])new Object[old.length * 2];
-	
+	newData = (E[])new Object[data.length * 2];
+	int s = 0;
+	// copy values over
+	for (int i = 0; i < data.length; i++){
+	    newData[i] = data[(start + i) % data.length];
+	}
+	int e = data.length - 1;
+	data = newData;
+	start = s;
+	end = e;
     }
 
     public E removeFirst(){
@@ -123,21 +131,15 @@ public class MyDeque<E>{
     }
 
     public static void main(String[] args){
-	MyDeque a = new MyDeque();
-	MyDeque b = new MyDeque(20);
-	a.addFirst("hello");
-	a.addFirst("we");
-	a.addFirst("so");
-	a.addLast("fried");
-	b.addLast(1);
-	b.addLast(2);
-	b.addFirst(22);
-	b.addFirst(23);
-	System.out.println(a);
+	MyDeque b = new MyDeque(2);
+	b.addLast(3);
+	b.addLast(4);
 	System.out.println(b);
-	System.out.println(a.removeFirst());
-	System.out.println(a.removeLast());
-	System.out.println(a);
+	b.addFirst(2);
+	b.addFirst(1);
+	System.out.println(b);
+	System.out.println(b.removeFirst());
+	System.out.println(b.removeLast());
 	System.out.println(b);
     }
 }
