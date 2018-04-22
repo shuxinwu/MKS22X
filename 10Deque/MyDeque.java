@@ -27,8 +27,7 @@ public class MyDeque<E>{
     public int size(){
 	return size;
     }
-
-    // incomplete
+    
     public void addFirst(E a){
 	if (a == null){
 	    throw new NullPointerException();
@@ -36,20 +35,15 @@ public class MyDeque<E>{
 	if (size == data.length){
 	    resize(data);
 	}
-	if (start == 0 && data[start] != null){
-	    data[data.length - 1] = a;
-	    start = data.length - 1;
-	}
-	else{
+	if (data[start] != null){	    
 	    if (start == 0){
-		data[0] = a;
-		start = 0;
+		start = data.length - 1;
 	    }
 	    else{
-		data[start - 1] = a;
-		start--;
+		start--;	   
 	    }
 	}
+	data[start] = a;
 	size++;
     }
 
@@ -61,19 +55,16 @@ public class MyDeque<E>{
 	    resize(data);
 	}
 	if (end == data.length - 1){
-	    data[0] = a;
 	    end = 0;
 	}
-	if (data[end] == null){
-	    data[end] = a;
-	}
-	else{
-	    data[end + 1] = a;
+	if (data[end] != null){
 	    end++;
 	}
+	data[end] = a;
 	size++;
     }
 
+    // incomplete
     @SuppressWarnings("unchecked")
     private void resize(E[] old){
 	E[] newData;
