@@ -13,10 +13,10 @@ public class ExpressionTree{
     /* The sample tree would be: "3 2 10 * +"     */
     public String toStringPostfix(){
         if (isValue()){
-	    return "" + getValue();
+	    return getValue() + " ";
 	}
         else{
-	    return getLeft().toStringPostfix() + getRight().toStringPostfix();
+	    return getLeft().toStringPostfix() + getRight().toStringPostfix() + getOp() + " ";
 	}
     }
   
