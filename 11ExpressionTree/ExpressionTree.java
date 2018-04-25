@@ -9,7 +9,7 @@ public class ExpressionTree{
 	    return getValue() + " ";
 	}
         else{
-	    return getLeft().toStringPostfix() + getOp() + " " + getRight().toStringPostfix();
+	    return "(" + getLeft().toString() + getOp() + " " + getRight().toString() + ") ";
 	}
     }
   
