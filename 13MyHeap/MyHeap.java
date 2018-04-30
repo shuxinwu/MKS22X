@@ -28,7 +28,12 @@ public class MyHeap{
 	size++;
     }
 
-    //  public String remove(){};
+    public String remove(){
+	String old = data[size - 1];
+	data[size - 1] = null;
+	size--;
+	return old;
+    }
 
     //  public String peek(){};
 
@@ -51,5 +56,9 @@ public class MyHeap{
 	a.add("taking");
 	a.add("ctrl");
 	System.out.println(a);
+	System.out.println(a.size());
+	a.remove();
+	System.out.println(a);
+	System.out.println(a.size());
     }
 }
