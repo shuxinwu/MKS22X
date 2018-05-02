@@ -1,28 +1,30 @@
 import java.io.*;
 import java.util.*;
 
-public class MyHeap{
-    private String[] data;
+public class MyHeap<T extends Comparable<T>>{
+    private T[] data;
     private int size;
     private boolean isMax;
-    
+
+    @SuppressWarnings("unchecked")
     public MyHeap(){
-	data = new String[10];
+	data = (T[])new Comparable[10];
 	size = 0;
 	isMax = true;
     }
 
     //  true: construct empty max heap, false: construct empty min heap
+    @SuppressWarnings("unchecked")
     public MyHeap(boolean a){
-	data = new String[10];
+	data = (T[])new Comparable[10];
 	size = 0;
 	isMax = a;
     }
 
-    public void add(String S){ 
+    public void add(T S){ 
 	int a = (size - 1) / 2;
 	int b = size;
-	String temp;
+	T temp;
 	data[b] = S;
 	if (isMax){
 	    while (data[b].compareTo(data[a]) > 0){
@@ -45,14 +47,14 @@ public class MyHeap{
 	size++;
     }
 
-    public String remove(){
-	String old = data[size - 1];
+    public T remove(){
+	T old = data[size - 1];
 	data[size - 1] = null;
 	size--;
 	return old;
     }
 
-    public String peek(){
+    public T peek(){
 	return data[0];
     }
 
