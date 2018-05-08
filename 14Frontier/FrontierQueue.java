@@ -4,11 +4,11 @@ public class FrontierQueue implements Frontier{
     private ArrayList<Location> queue;
 
     public FrontierQueue(){
-	queue = new ArrayList<Location>;
+	queue = new ArrayList<Location>();
     }
 
     public Location next(){
-	return queue.remove(0);;
+	return queue.remove(0);
     }
 
     public void add(Location a){

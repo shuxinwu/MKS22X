@@ -1,8 +1,10 @@
+import java.util.*;
+
 public class FrontierStack{
     private ArrayList<Location> stack;
 
     public FrontierStack(){
-	stack = new ArrayList<Location>;
+	stack = new ArrayList<Location>();
     }
     
     public Location next(){
