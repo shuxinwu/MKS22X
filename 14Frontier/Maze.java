@@ -80,4 +80,8 @@ public class Maze{
 	return end;
     }
 
+    public static void main(String[] args){
+
+    }
+    
 }
