@@ -25,11 +25,13 @@ public class MazeSolver{
 
 	frontier = new FrontierStack();
 	while (frontier.hasNext()){
-	    //	    frontier.next();
-	    if (frontier.next() == Maze.getEnd()){
-		return true;
+	    Location[] l = Maze.getNeighbors(frontier.next());
+	    for (int i = 0; i < 4; i++){
+		if (l[i] == Maze.getEnd()){
+		    return true;
+		}
 	    }
-	    
+	}
 	return false;
     }
 
