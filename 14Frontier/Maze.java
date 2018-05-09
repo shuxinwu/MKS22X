@@ -41,6 +41,7 @@ public class Maze{
     // 'E' - end space (do not replace this)
     // '@' - part of solution
     // 'S' - starting space (do not replace this)
+
     public String toString(){
 	String s = "";
 	for (int a = 0; a < board.length; a++){
@@ -56,23 +57,27 @@ public class Maze{
     // Work on this method as a group! 
     public String toStringColor(){
     }
+    */
 
     //return a list of Locations that are:
-    // adjacent to n and  not visited
+    // adjacent to n and not visited
     // all the Locations in this list should have their previous set to n.
     public Location[] getNeighbors(Location n){
-	
-	return null;
+	Location[] neighbors = new Location[4];
+	for (int i = 0; i < 4; i++){
+	    if (board[n.getX() + moves[i][0]][n.getY() + moves[i][1]] == ' '){
+		neighbors[i] = new Location(n.getX() + moves[i][0], n.getY() + moves[i][1], n);
+	    }
+	}
+	return neighbors;
     }
 
     public Location getStart(){
-	return null;
+	return start;
     }
 
     public Location getEnd(){
-	return null;
+	return end;
     }
-
-    */
 
 }
