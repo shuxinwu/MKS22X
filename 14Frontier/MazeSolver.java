@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+
 public class MazeSolver{
     private Maze maze;
     private Frontier frontier;
@@ -30,7 +34,7 @@ public class MazeSolver{
 	}
 	while (frontier.hasNext()){
 	    Location[] l = maze.getNeighbors(frontier.next());
-	    for (int i = 0; i < 4; i++){
+	    for (int i = 0; i < l.length; i++){
 		if (l[i] == maze.getEnd()){
 		    return true;
 		}
@@ -42,5 +46,15 @@ public class MazeSolver{
 
     public String toString(){
 	return maze.toString();
+    }
+
+    public static void main(String[] args){
+        MazeSolver f = new MazeSolver("MazeA.txt");
+	//  true animates the maze.
+	//  f.setAnimate(true);
+	//  f.solve();
+	f.solve();
+	System.out.println(f);
+
     }
 }
