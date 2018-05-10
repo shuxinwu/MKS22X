@@ -22,14 +22,19 @@ public class MazeSolver{
 	//  check if any locations are the end, if you found the end just return true!
 	//  add all the locations to the frontier
 	//when there are no more values in the frontier return false
-
-	frontier = new FrontierStack();
+	if (mode == 0){
+	    frontier = new FrontierQueue();
+	}
+	else{
+	    frontier = new FrontierStack();
+	}
 	while (frontier.hasNext()){
-	    Location[] l = Maze.getNeighbors(frontier.next());
+	    Location[] l = maze.getNeighbors(frontier.next());
 	    for (int i = 0; i < 4; i++){
-		if (l[i] == Maze.getEnd()){
+		if (l[i] == maze.getEnd()){
 		    return true;
 		}
+		frontier.add(l[i]);
 	    }
 	}
 	return false;
