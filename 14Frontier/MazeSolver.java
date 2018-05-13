@@ -7,6 +7,7 @@ public class MazeSolver{
     private Frontier frontier;
 
     public MazeSolver(String mazeText){
+	maze = new Maze(mazeText);
 	
     }
 
@@ -35,10 +36,13 @@ public class MazeSolver{
 	while (frontier.hasNext()){
 	    Location[] l = maze.getNeighbors(frontier.next());
 	    for (int i = 0; i < l.length; i++){
-		if (l[i] == maze.getEnd()){
-		    return true;
+		if (l[i] != null){	    
+		    if (l[i] == maze.getEnd()){
+			return true;
+		    }
+		    
+		    frontier.add(l[i]);
 		}
-		frontier.add(l[i]);
 	    }
 	}
 	return false;

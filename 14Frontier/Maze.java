@@ -67,14 +67,14 @@ public class Maze{
     // all the Locations in this list should have their previous set to n.
     public Location[] getNeighbors(Location n){
 	Location[] neighbors = new Location[4];
-	int count = 0;
+	//	int count = 0;
 	for (int i = 0; i < 4; i++){
 	    if (board[n.getX() + moves[i][0]][n.getY() + moves[i][1]] == ' '){
 		neighbors[i] = new Location(n.getX() + moves[i][0], n.getY() + moves[i][1], n);
-		count++;
+		//	count++;
 	    }
 	}
-
+	/*
 	if (count != 4){
 	    Location[] nei = new Location[count];
 	    int c = 0;
@@ -86,6 +86,7 @@ public class Maze{
 	    }
 	    neighbors = nei;
 	}
+	*/
 	return neighbors;
     }
 
