@@ -1,7 +1,7 @@
 public class Location implements Comparable<Location>{
     private int x,y;
     private Location previous;
-    private int distanceToStart;
+    private double distance;
 
     public Location(int xc, int yc, Location prev){
 	x = xc;
@@ -21,11 +21,15 @@ public class Location implements Comparable<Location>{
 	return previous;
     }
 
-    public int getDistanceToStart(){
-	return distanceToStart;
+    public double getDistance(){
+	return distance;
     }
 
     public int compareTo(Location a){
-	return this.getDistanceToStart() - a.getDistanceToStart();
+	return (int) (this.getDistance() - a.getDistance());
+    }
+
+    public static void main(String[] args){
+
     }
 }
