@@ -5,6 +5,7 @@ import java.util.*;
 public class Maze{
     private Location start,end;
     private char[][] board;
+    private boolean AStar;
     int[][] moves = { {0,1}, {1,0}, {-1,0}, {0,-1} };
 
     public Maze(String mazeText) throws FileNotFoundException{
@@ -96,6 +97,10 @@ public class Maze{
 
     public Location getEnd(){
 	return end;
+    }
+
+    public void setAStar(boolean a){
+	AStar = a;
     }
 
     public static void main(String[] args){

@@ -7,8 +7,7 @@ public class MazeSolver{
     private Frontier frontier;
 
     public MazeSolver(String mazeText){
-	maze = new Maze(mazeText);
-	
+	maze = new Maze(mazeText);	
     }
 
     //Default to BFS
@@ -19,6 +18,8 @@ public class MazeSolver{
     //mode: required to allow for alternate solve modes.
     //0: BFS
     //1: DFS
+    //2: BFD
+    //3: A*
     public boolean solve(int mode){
 	//initialize your frontier
 	//while there is stuff in the frontier:
@@ -30,9 +31,18 @@ public class MazeSolver{
 	if (mode == 0){
 	    frontier = new FrontierQueue();
 	}
-	else{
+	if (mode == 1){
 	    frontier = new FrontierStack();
 	}
+	if (mode == 2){
+	    frontier = new FrontierPriorityQueue();
+	    maze.setAStar(false);
+	}
+	if (mode == 3){
+	    frontier = new FrontierPriorityQueue();
+	    maze.setAStar(true);
+	}
+       
 	while (frontier.hasNext()){
 	    Location[] l = maze.getNeighbors(frontier.next());
 	    for (int i = 0; i < l.length; i++){
@@ -53,7 +63,7 @@ public class MazeSolver{
     }
 
     public static void main(String[] args){
-        MazeSolver f = new MazeSolver("MazeA.txt");
+        MazeSolver f = new MazeSolver("MazeABF.txt");
 	//  true animates the maze.
 	//  f.setAnimate(true);
 	//  f.solve();
