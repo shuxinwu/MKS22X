@@ -20,7 +20,7 @@ public class MyHeap<T extends Comparable<T>>{
 	size = 0;
 	isMax = a;
     }
-
+    
     public void add(T S){ 
 	int a = (size - 1) / 2;
 	int b = size;
@@ -67,20 +67,19 @@ public class MyHeap<T extends Comparable<T>>{
     }
 
     public static void main(String[] args){
-	MyHeap a = new MyHeap();
-
-	a.add("bed");
-	a.add("sick");
-	a.add("head");
-	a.add("chest?");
-	a.add("and");
-	a.add("taking");
-	a.add("ctrl");
+	/*	
+	MyHeap a = new MyHeap(false);
+	
+	a.add(4.0);
+	a.add(2.1);
+	a.add(44.3);
+	a.add(2.99);
 	System.out.println(a);
 	System.out.println(a.size());
 	a.remove();
 	System.out.println(a);
 	System.out.println(a.size());
 	System.out.println(a.peek());
+	*/
     }
 }
