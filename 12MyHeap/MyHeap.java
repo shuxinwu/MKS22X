@@ -67,6 +67,7 @@ public class MyHeap<T extends Comparable<T>>{
     }
 
     public static void main(String[] args){
+	/*
 	MyHeap a = new MyHeap();
 
 	a.add("bed");
@@ -82,5 +83,6 @@ public class MyHeap<T extends Comparable<T>>{
 	System.out.println(a);
 	System.out.println(a.size());
 	System.out.println(a.peek());
+	*/
     }
 }
