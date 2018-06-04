@@ -63,12 +63,12 @@ public class MazeSolver{
     }
 
     public static void main(String[] args){
-        MazeSolver f = new MazeSolver("MazeABF.txt");
+    //    MazeSolver f = new MazeSolver("MazeABF.txt");
 	//  true animates the maze.
 	//  f.setAnimate(true);
 	//  f.solve();
-	f.solve();
-	System.out.println(f);
+	//f.solve();
+//	System.out.println(f);
 
     }
 }
